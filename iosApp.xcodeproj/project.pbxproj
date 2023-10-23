@@ -14,6 +14,14 @@
 		260E224F2ADD4D0700526F9F /* iosAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260E224E2ADD4D0700526F9F /* iosAppTests.swift */; };
 		260E22592ADD4D0700526F9F /* iosAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260E22582ADD4D0700526F9F /* iosAppUITests.swift */; };
 		260E225B2ADD4D0700526F9F /* iosAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260E225A2ADD4D0700526F9F /* iosAppUITestsLaunchTests.swift */; };
+		260E226B2ADD538800526F9F /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260E226A2ADD538800526F9F /* Register.swift */; };
+		2648B6812ADFBCAB00CCE4AE /* FeedComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648B6802ADFBCAB00CCE4AE /* FeedComponentView.swift */; };
+		2648B6832ADFC42900CCE4AE /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648B6822ADFC42900CCE4AE /* FeedView.swift */; };
+		269FA1432AE6897F00B3D20E /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FA1422AE6897F00B3D20E /* NavigationBarView.swift */; };
+		269FA1472AE68FCA00B3D20E /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FA1462AE68FCA00B3D20E /* ExploreView.swift */; };
+		269FA1492AE68FE800B3D20E /* Profile&ConfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FA1482AE68FE800B3D20E /* Profile&ConfView.swift */; };
+		269FA14B2AE6B45E00B3D20E /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FA14A2AE6B45E00B3D20E /* WalletView.swift */; };
+		269FA14E2AE6B6E300B3D20E /* WalletDescr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FA14D2AE6B6E300B3D20E /* WalletDescr.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +52,14 @@
 		260E22542ADD4D0700526F9F /* iosAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iosAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		260E22582ADD4D0700526F9F /* iosAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosAppUITests.swift; sourceTree = "<group>"; };
 		260E225A2ADD4D0700526F9F /* iosAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		260E226A2ADD538800526F9F /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
+		2648B6802ADFBCAB00CCE4AE /* FeedComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedComponentView.swift; sourceTree = "<group>"; };
+		2648B6822ADFC42900CCE4AE /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		269FA1422AE6897F00B3D20E /* NavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
+		269FA1462AE68FCA00B3D20E /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
+		269FA1482AE68FE800B3D20E /* Profile&ConfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile&ConfView.swift"; sourceTree = "<group>"; };
+		269FA14A2AE6B45E00B3D20E /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
+		269FA14D2AE6B6E300B3D20E /* WalletDescr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDescr.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +110,8 @@
 		260E223C2ADD4D0500526F9F /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				2648B67F2ADFBC8100CCE4AE /* Components */,
+				260E22692ADD534100526F9F /* User Interfaces */,
 				260E223D2ADD4D0500526F9F /* iosAppApp.swift */,
 				260E223F2ADD4D0500526F9F /* ContentView.swift */,
 				260E22412ADD4D0700526F9F /* Assets.xcassets */,
@@ -125,6 +143,44 @@
 				260E225A2ADD4D0700526F9F /* iosAppUITestsLaunchTests.swift */,
 			);
 			path = iosAppUITests;
+			sourceTree = "<group>";
+		};
+		260E22692ADD534100526F9F /* User Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				269FA1452AE68F9400B3D20E /* Register */,
+				269FA1442AE68F7200B3D20E /* Navigation */,
+			);
+			path = "User Interfaces";
+			sourceTree = "<group>";
+		};
+		2648B67F2ADFBC8100CCE4AE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				2648B6802ADFBCAB00CCE4AE /* FeedComponentView.swift */,
+				269FA14D2AE6B6E300B3D20E /* WalletDescr.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		269FA1442AE68F7200B3D20E /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				2648B6822ADFC42900CCE4AE /* FeedView.swift */,
+				269FA1422AE6897F00B3D20E /* NavigationBarView.swift */,
+				269FA1462AE68FCA00B3D20E /* ExploreView.swift */,
+				269FA1482AE68FE800B3D20E /* Profile&ConfView.swift */,
+				269FA14A2AE6B45E00B3D20E /* WalletView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		269FA1452AE68F9400B3D20E /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				260E226A2ADD538800526F9F /* Register.swift */,
+			);
+			path = Register;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +313,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				269FA14B2AE6B45E00B3D20E /* WalletView.swift in Sources */,
+				269FA1492AE68FE800B3D20E /* Profile&ConfView.swift in Sources */,
+				2648B6832ADFC42900CCE4AE /* FeedView.swift in Sources */,
+				2648B6812ADFBCAB00CCE4AE /* FeedComponentView.swift in Sources */,
+				260E226B2ADD538800526F9F /* Register.swift in Sources */,
+				269FA1432AE6897F00B3D20E /* NavigationBarView.swift in Sources */,
 				260E22402ADD4D0500526F9F /* ContentView.swift in Sources */,
+				269FA1472AE68FCA00B3D20E /* ExploreView.swift in Sources */,
 				260E223E2ADD4D0500526F9F /* iosAppApp.swift in Sources */,
+				269FA14E2AE6B6E300B3D20E /* WalletDescr.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

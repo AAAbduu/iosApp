@@ -8,14 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showWalletMenu = false
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack(alignment: .topLeading){
+            NavigationBar()
+            
         }
-        .padding()
+        .navigationTitle("Home")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar{
+            ToolbarItem(placement: .navigationBarLeading){
+                Circle()
+                    .frame(width: 32, height: 32)
+            }
+            ToolbarItem(placement: .topBarTrailing){
+                Button{
+                    showWalletMenu.toggle()
+                } label: {
+                    Circle()
+                        .frame(width: 32, height: 32)
+                }
+            }
+        }
     }
 }
 

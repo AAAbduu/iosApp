@@ -9,10 +9,16 @@ import SwiftUI
 
 struct TopLogoWallet: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack(){
+            Image(.lightstraightethIcon)
+                .resizable()
+                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+            Image(.wallet50)
+        }
+        .background(Color.blue)
+        .frame(width: .infinity, height: 80)
     }
 }
-
 #Preview {
     TopLogoWallet()
 }
