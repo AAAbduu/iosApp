@@ -22,6 +22,7 @@
 		269FA1492AE68FE800B3D20E /* Profile&ConfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FA1482AE68FE800B3D20E /* Profile&ConfView.swift */; };
 		269FA14B2AE6B45E00B3D20E /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FA14A2AE6B45E00B3D20E /* WalletView.swift */; };
 		269FA14E2AE6B6E300B3D20E /* WalletDescr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FA14D2AE6B6E300B3D20E /* WalletDescr.swift */; };
+		26B965C92AE809D800712EB3 /* WalletInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B965C82AE809D700712EB3 /* WalletInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		269FA1482AE68FE800B3D20E /* Profile&ConfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile&ConfView.swift"; sourceTree = "<group>"; };
 		269FA14A2AE6B45E00B3D20E /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
 		269FA14D2AE6B6E300B3D20E /* WalletDescr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDescr.swift; sourceTree = "<group>"; };
+		26B965C82AE809D700712EB3 /* WalletInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 		260E22692ADD534100526F9F /* User Interfaces */ = {
 			isa = PBXGroup;
 			children = (
+				26B965C72AE809AD00712EB3 /* Wallet */,
 				269FA1452AE68F9400B3D20E /* Register */,
 				269FA1442AE68F7200B3D20E /* Navigation */,
 			);
@@ -170,7 +173,6 @@
 				269FA1422AE6897F00B3D20E /* NavigationBarView.swift */,
 				269FA1462AE68FCA00B3D20E /* ExploreView.swift */,
 				269FA1482AE68FE800B3D20E /* Profile&ConfView.swift */,
-				269FA14A2AE6B45E00B3D20E /* WalletView.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -181,6 +183,15 @@
 				260E226A2ADD538800526F9F /* Register.swift */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		26B965C72AE809AD00712EB3 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				269FA14A2AE6B45E00B3D20E /* WalletView.swift */,
+				26B965C82AE809D700712EB3 /* WalletInfoView.swift */,
+			);
+			path = Wallet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,6 +331,7 @@
 				260E226B2ADD538800526F9F /* Register.swift in Sources */,
 				269FA1432AE6897F00B3D20E /* NavigationBarView.swift in Sources */,
 				260E22402ADD4D0500526F9F /* ContentView.swift in Sources */,
+				26B965C92AE809D800712EB3 /* WalletInfoView.swift in Sources */,
 				269FA1472AE68FCA00B3D20E /* ExploreView.swift in Sources */,
 				260E223E2ADD4D0500526F9F /* iosAppApp.swift in Sources */,
 				269FA14E2AE6B6E300B3D20E /* WalletDescr.swift in Sources */,
