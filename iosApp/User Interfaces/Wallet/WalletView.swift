@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct WalletView: View {
+    @State private var selectedWallets: [Bool] = [false, false]
     var body: some View {
         HStack {
             Spacer() // Push the content to the right
             VStack(spacing: 10) {
-                ForEach(WalletDescr.allCases, id: \.rawValue) { option in
+                ForEach(Array(WalletDescr.allCases.enumerated()), id: \.element.rawValue) { index, option in
                     HStack(spacing: 10) {
                         Image(systemName: option.images)
                         Text(option.description)
@@ -22,12 +23,15 @@ struct WalletView: View {
                     }
                     .padding()
                     .border(Color.black)
+                    .onTapGesture {
+                        selectedWallets[index].toggle()
+                        print(selectedWallets)
+                    }
                 }
                 Spacer()
             }
-            .frame(width: 300)
-            .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
-            .padding()
+            .padding(.horizontal)
+            .background(Color.white)
         }
     }
 }
