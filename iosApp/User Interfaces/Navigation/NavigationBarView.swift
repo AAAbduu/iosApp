@@ -7,32 +7,35 @@
 
 import SwiftUI
 
+//Create an enum for your options
+enum Tabs: String{
+    case Home
+    case Explore
+    case Configuration
+}
+
 struct NavigationBar: View {
-    @State private var selectedIndex = 0
+    @State var selectedTab: Tabs = .Home
     var body: some View {
-        TabView(selection: $selectedIndex){
+        TabView(selection: $selectedTab){
             FeedView()
-                .onTapGesture {
-                    selectedIndex = 0
-                }
+                .navigationTitle("Home")
                 .tabItem{
                     Image(systemName: "house")
                 }
+                .tag(Tabs.Home)
             ExploreView()
-                .onTapGesture {
-                    selectedIndex = 1
-                }
                 .tabItem{
                     Image(systemName: "magnifyingglass")
                 }
+                .tag(Tabs.Explore)
             Profile_ConfView()
-                .onTapGesture {
-                    selectedIndex = 2
-                }
                 .tabItem{
                     Image(systemName: "person.fill")
                 }
-        }
+                .tag(Tabs.Configuration)
+        }.navigationTitle(selectedTab.rawValue)
+            .navigationBarTitleDisplayMode(.inline)
     }
 }
 

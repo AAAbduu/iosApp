@@ -17,12 +17,15 @@
 		260E226B2ADD538800526F9F /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260E226A2ADD538800526F9F /* Register.swift */; };
 		2648B6812ADFBCAB00CCE4AE /* FeedComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648B6802ADFBCAB00CCE4AE /* FeedComponentView.swift */; };
 		2648B6832ADFC42900CCE4AE /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648B6822ADFC42900CCE4AE /* FeedView.swift */; };
+		265C4DB32AED6A0300A7B018 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265C4DB22AED6A0300A7B018 /* SearchBar.swift */; };
+		265C4DB72AED751400A7B018 /* ProfilePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265C4DB62AED751400A7B018 /* ProfilePreview.swift */; };
 		269FA1432AE6897F00B3D20E /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FA1422AE6897F00B3D20E /* NavigationBarView.swift */; };
 		269FA1472AE68FCA00B3D20E /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FA1462AE68FCA00B3D20E /* ExploreView.swift */; };
 		269FA1492AE68FE800B3D20E /* Profile&ConfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FA1482AE68FE800B3D20E /* Profile&ConfView.swift */; };
 		269FA14B2AE6B45E00B3D20E /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FA14A2AE6B45E00B3D20E /* WalletView.swift */; };
 		269FA14E2AE6B6E300B3D20E /* WalletDescr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FA14D2AE6B6E300B3D20E /* WalletDescr.swift */; };
 		26B965C92AE809D800712EB3 /* WalletInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B965C82AE809D700712EB3 /* WalletInfoView.swift */; };
+		26BC4A4A2AEAC44E0029A623 /* DetailedNftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC4A492AEAC44E0029A623 /* DetailedNftView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,12 +59,15 @@
 		260E226A2ADD538800526F9F /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		2648B6802ADFBCAB00CCE4AE /* FeedComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedComponentView.swift; sourceTree = "<group>"; };
 		2648B6822ADFC42900CCE4AE /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		265C4DB22AED6A0300A7B018 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		265C4DB62AED751400A7B018 /* ProfilePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePreview.swift; sourceTree = "<group>"; };
 		269FA1422AE6897F00B3D20E /* NavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		269FA1462AE68FCA00B3D20E /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		269FA1482AE68FE800B3D20E /* Profile&ConfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile&ConfView.swift"; sourceTree = "<group>"; };
 		269FA14A2AE6B45E00B3D20E /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
 		269FA14D2AE6B6E300B3D20E /* WalletDescr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDescr.swift; sourceTree = "<group>"; };
 		26B965C82AE809D700712EB3 /* WalletInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletInfoView.swift; sourceTree = "<group>"; };
+		26BC4A492AEAC44E0029A623 /* DetailedNftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedNftView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +168,8 @@
 			children = (
 				2648B6802ADFBCAB00CCE4AE /* FeedComponentView.swift */,
 				269FA14D2AE6B6E300B3D20E /* WalletDescr.swift */,
+				265C4DB22AED6A0300A7B018 /* SearchBar.swift */,
+				265C4DB62AED751400A7B018 /* ProfilePreview.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -169,6 +177,7 @@
 		269FA1442AE68F7200B3D20E /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				26BC4A482AEAC4280029A623 /* DetailedNFTView */,
 				2648B6822ADFC42900CCE4AE /* FeedView.swift */,
 				269FA1422AE6897F00B3D20E /* NavigationBarView.swift */,
 				269FA1462AE68FCA00B3D20E /* ExploreView.swift */,
@@ -192,6 +201,14 @@
 				26B965C82AE809D700712EB3 /* WalletInfoView.swift */,
 			);
 			path = Wallet;
+			sourceTree = "<group>";
+		};
+		26BC4A482AEAC4280029A623 /* DetailedNFTView */ = {
+			isa = PBXGroup;
+			children = (
+				26BC4A492AEAC44E0029A623 /* DetailedNftView.swift */,
+			);
+			path = DetailedNFTView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,9 +341,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				265C4DB32AED6A0300A7B018 /* SearchBar.swift in Sources */,
 				269FA14B2AE6B45E00B3D20E /* WalletView.swift in Sources */,
 				269FA1492AE68FE800B3D20E /* Profile&ConfView.swift in Sources */,
 				2648B6832ADFC42900CCE4AE /* FeedView.swift in Sources */,
+				265C4DB72AED751400A7B018 /* ProfilePreview.swift in Sources */,
 				2648B6812ADFBCAB00CCE4AE /* FeedComponentView.swift in Sources */,
 				260E226B2ADD538800526F9F /* Register.swift in Sources */,
 				269FA1432AE6897F00B3D20E /* NavigationBarView.swift in Sources */,
@@ -335,6 +354,7 @@
 				269FA1472AE68FCA00B3D20E /* ExploreView.swift in Sources */,
 				260E223E2ADD4D0500526F9F /* iosAppApp.swift in Sources */,
 				269FA14E2AE6B6E300B3D20E /* WalletDescr.swift in Sources */,
+				26BC4A4A2AEAC44E0029A623 /* DetailedNftView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

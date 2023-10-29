@@ -29,13 +29,17 @@ struct FeedComponentView: View {
             HStack(alignment: .bottom){
                 Rectangle()
                     .frame(width: 250, height: 120)
-                Circle()
-                    .frame(width: 56, height: 56)
+                NavigationLink(destination: DetailedNftView()){
+                    Circle()
+                        .frame(width: 56, height: 56)
+                }
             }
             .padding(.leading, 64)
             
         }
+        
         .padding(.horizontal)
+        
         Divider()
             .frame(minHeight: 0.4)
             .overlay(Color.gray)

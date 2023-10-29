@@ -6,10 +6,37 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct DetailedNftView: View {
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .center){
+            //Creator pic and name goes here
+            HStack{
+                Rectangle()
+                    .frame(width: 64, height: 64)
+                Text("@ContentCreator")
+            }
+            //NFT 3d resource and description goes here
+            VStack{
+                Text("This is a description of the NFT that is just below, full width and 200 height will be given in case some kind of animation wants to be played here.")
+                    .padding([.top, .leading, .trailing])
+                Rectangle()
+                    .frame(width: .infinity, height: 200)
+                
+            }
+            //Map goes here, telling the position of the nft just below
+            VStack {
+                Map()
+                    .frame(height: 200.0)
+                
+                Text("These are the coordinates of the nft: ")
+            }
+            Spacer()
+            Button(action: {print("Claim")}, label: {Text("Claim")})
+                .border(Color.black)
+        }
     }
 }
 

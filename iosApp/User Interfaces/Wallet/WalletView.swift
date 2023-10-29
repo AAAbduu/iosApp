@@ -20,12 +20,17 @@ struct WalletView: View {
                             .font(.title2)
                         Spacer()
                         Image(systemName: "chevron.right")
+                            .rotationEffect(selectedWallets[index] ? .degrees(90) : .degrees(0))
                     }
                     .padding()
                     .border(Color.black)
                     .onTapGesture {
-                        selectedWallets[index].toggle()
-                        print(selectedWallets)
+                        withAnimation(.easeOut){
+                            selectedWallets[index].toggle()
+                        }
+                    }
+                    if selectedWallets[index]{
+                        WalletInfoView()
                     }
                 }
                 Spacer()

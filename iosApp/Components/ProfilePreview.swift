@@ -9,7 +9,18 @@ import SwiftUI
 
 struct ProfilePreview: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack{
+            Circle()
+                .frame(width: 64, height: 64)
+            VStack(alignment: .leading){
+                Text("Content creator name")
+                    .fontWeight(.bold)
+                Text("@ContentCreator")
+                    .font(.caption)
+            }
+            Spacer()
+        }
+        .padding()
     }
 }
 

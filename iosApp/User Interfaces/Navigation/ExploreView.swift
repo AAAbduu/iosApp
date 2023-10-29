@@ -8,8 +8,19 @@
 import SwiftUI
 
 struct ExploreView: View {
+    @State private var searchText = ""
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            
+            SearchBar(text: $searchText)
+            ScrollView{
+                LazyVStack(spacing: 0){
+                    ForEach(0 ... 7, id: \.self) { _ in
+                            ProfilePreview()
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -30,8 +30,6 @@ struct ContentView: View {
                 .offset(x: showWalletMenu ? 0: 330, y:0)
             
         }
-        .navigationTitle("Home")
-        .navigationBarTitleDisplayMode(.inline)
         .toolbar{
             ToolbarItem(placement: .navigationBarLeading){
                 Circle()
