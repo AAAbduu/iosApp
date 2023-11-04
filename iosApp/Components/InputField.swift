@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SearchBar: View {
+struct InputField: View {
     @Binding var text: String
     var body: some View {
         ZStack{
@@ -26,5 +26,5 @@ struct SearchBar: View {
 }
 
 #Preview {
-    SearchBar(text: .constant(""))
+    InputField(text: .constant(""))
 }
