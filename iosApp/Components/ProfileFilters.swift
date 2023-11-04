@@ -6,3 +6,17 @@
 //
 
 import Foundation
+
+enum ProfileFilters: Int, CaseIterable{
+    case live
+    case upcoming
+    case past
+    
+    var filter: String{
+        switch self{
+        case .live: return "Live"
+        case .upcoming: return "Upcoming"
+        case .past: return "Past"
+        }
+    }
+}

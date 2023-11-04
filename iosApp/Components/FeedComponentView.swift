@@ -22,6 +22,7 @@ struct FeedComponentView: View {
                     .font(.caption)
                 
             }
+            .padding(.top)
             //This is the content of a post. It should not exceed more than 3 lines of text.
             Text("Here is the content of the post created by the content creator")
                 .padding(.leading, 64)

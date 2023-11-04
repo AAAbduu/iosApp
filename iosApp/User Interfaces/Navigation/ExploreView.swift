@@ -9,10 +9,11 @@ import SwiftUI
 
 struct ExploreView: View {
     @State private var searchText = ""
+    @State private var imageExplore = "magnifyingglass"
     var body: some View {
         VStack{
             
-            SearchBar(text: $searchText)
+            InputField(text: $searchText, image: imageExplore, placeHolder: "Search")
             ScrollView{
                 LazyVStack(spacing: 0){
                     ForEach(0 ... 7, id: \.self) { _ in

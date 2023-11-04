@@ -9,18 +9,21 @@ import SwiftUI
 
 struct ProfilePreview: View {
     var body: some View {
-        HStack{
-            Circle()
-                .frame(width: 64, height: 64)
-            VStack(alignment: .leading){
-                Text("Content creator name")
-                    .fontWeight(.bold)
-                Text("@ContentCreator")
-                    .font(.caption)
+        NavigationLink(destination: DetailedProfileView()) {
+            HStack {
+                Circle()
+                    .frame(width: 64, height: 64)
+                VStack(alignment: .leading) {
+                    Text("Content creator name")
+                        .fontWeight(.bold)
+                    Text("@ContentCreator")
+                        .font(.caption)
+                }
+                Spacer()
             }
-            Spacer()
+            .padding()
         }
-        .padding()
+        .buttonStyle(.plain)
     }
 }
 
