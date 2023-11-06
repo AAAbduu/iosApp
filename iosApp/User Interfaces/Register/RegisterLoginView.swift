@@ -7,15 +7,31 @@
 
 import SwiftUI
 
-struct Register: View {
-    @State private var toolbarHeight: CGFloat = 600 // Set theinitial height of the toolbar
+enum RegisterLoginView {
+    case none
+    case register
+    case login
+}
+
+struct RegisterLoginView: View {
+    //Animation variables
+    @State private var toolbarHeight: CGFloat = 600
     @State private var logoSize = [800.0, 400.0]
     @State private var offSetLogo = [0.0, 0.0]
     @State private var appNameYOffset = 250.0
-    @State private var tappedButton = 0 //0 no button, 1 login button, 2 signup button    
+    @State private var tappedButton : RegisterLoginView = .none
     
+    //Data capture for viewModel
     @State private var username = ""
     @State private var password = ""
+    @State private var passwordRepeat = ""
+    @State private var email = ""
+    @State private var termsAccepted = false
+    @State private var pPolicyAccepted = false
+
+    
+    
+    @EnvironmentObject private var vM : RegisterLoginController
     
     var body: some View {
         
@@ -25,58 +41,20 @@ struct Register: View {
         loginView
         
         
-        if tappedButton == 0{
+        if tappedButton == .none{
             Spacer()
             initialLoginSignupButton
         }
         
-        if tappedButton == 2{
-            Spacer()
-            VStack(spacing: 16){
-                Text("Welcome")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .padding(.bottom, 21.0)
-                
-                InputField(text: $username, image: "person", placeHolder: "Username")
-                    .frame(width: 300)
-                InputField(text: $password, image: "lock", placeHolder: "Password")
-                    .frame(width: 300)
-                InputField(text: $password, image: "lock", placeHolder: "Repeat password")
-                    .frame(width: 300)
-                InputField(text: $password, image: "envelope", placeHolder: "E-mail")
-                    .frame(width: 300)
-                Button("Sign up"){
-                    print("sign up button")
-                }
-                .padding(.top, 36.0)
-            }
-            
-            Spacer()
-            Text("Have an account already?")
-            
-            Button("Log-in"){
-                tappedButton = 1
-                withAnimation(){
-                    toolbarHeight = 400
-                    logoSize[0] = 600
-                    logoSize[1] = 300
-                    offSetLogo[0] = 0
-                    offSetLogo[1] = 0
-                    appNameYOffset = 160
-                    
-                }
-            }
-
-        }
+        signUpView
     }
 }
 
 #Preview {
-    Register()
+    RegisterLoginView()
 }
 
-extension Register {
+extension RegisterLoginView {
     //logo and name goes here
     var logoName: some View{
         ZStack() {
@@ -103,7 +81,7 @@ extension Register {
     var initialLoginSignupButton: some View{
         Group{
             Button("Log in"){
-                tappedButton = 1
+                tappedButton = .login
                 withAnimation(){
                     toolbarHeight = 400
                     logoSize[0] = 600
@@ -116,7 +94,7 @@ extension Register {
             }
             
             Button("Sign-up") {
-                tappedButton = 2
+                tappedButton = .register
                 withAnimation (){
                     // Change the height of the toolbar
                     toolbarHeight = 65 // Adjust the desired height
@@ -133,7 +111,7 @@ extension Register {
     var loginView: some View{
         //Login animated view goes here
         Group{
-            if tappedButton == 1{
+            if tappedButton == .login{
                 
                 VStack(){
                     Spacer()
@@ -150,14 +128,14 @@ extension Register {
                         .frame(width: 300)
                     
                     Button("Log in"){
-                        print("Login Button")
+                        vM.login(userName: username, password: password)
                     }
                     .padding(.top)
                     Spacer()
                     Text("Don't have an account yet?")
                     
                     Button("Sign-up"){
-                        tappedButton = 2
+                        tappedButton = .register
                         withAnimation (){
                             // Change the height of the toolbar
                             toolbarHeight = 65 // Adjust the desired height
@@ -169,6 +147,51 @@ extension Register {
                         }
                     }
                     
+                }
+            }
+        }
+    }
+    var signUpView: some View {
+        Group {
+            if tappedButton == .register {
+                Spacer()
+                VStack(spacing: 16) {
+                    Text("Welcome")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .padding(.bottom, 21.0)
+                    
+                    InputField(text: $username, image: "person", placeHolder: "Username")
+                        .frame(width: 300)
+                    InputField(text: $password, image: "lock", placeHolder: "Password")
+                        .frame(width: 300)
+                    InputField(text: $password, image: "lock", placeHolder: "Repeat password")
+                        .frame(width: 300)
+                    InputField(text: $password, image: "envelope", placeHolder: "E-mail")
+                        .frame(width: 300)
+                    
+                    CheckBoxToggleView( isChecked: $termsAccepted,holdingText: "Accept terms and services")
+                    CheckBoxToggleView(isChecked:$pPolicyAccepted ,holdingText: "Accept privacy policy")
+                    
+                    Button("Sign up") {
+                        print("sign up button")
+                    }
+                    .padding(.top, 36.0)
+                }
+                
+                Spacer()
+                Text("Have an account already?")
+                
+                Button("Log-in") {
+                    tappedButton = .login
+                    withAnimation() {
+                        toolbarHeight = 400
+                        logoSize[0] = 600
+                        logoSize[1] = 300
+                        offSetLogo[0] = 0
+                        offSetLogo[1] = 0
+                        appNameYOffset = 160
+                    }
                 }
             }
         }

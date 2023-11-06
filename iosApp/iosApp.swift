@@ -8,11 +8,16 @@
 import SwiftUI
 
 @main
-struct iosAppApp: App {
+struct iosApp: App {
+    @StateObject var vm : RegisterLoginController
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                ContentView()
+                if (vm.isLogged) {
+                    ContentView()
+                } else {
+                    Register()
+                }
             }
         }
     }
