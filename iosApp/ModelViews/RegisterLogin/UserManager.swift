@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+class UserManager: ObservableObject{
+    @Published var isUserLoggedIn: Bool = false
+    @Published var isBusy = false
+    
+    
+}

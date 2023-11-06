@@ -7,19 +7,22 @@
 
 import SwiftUI
 
-enum RegisterLoginView {
+enum RegisterLoginViewButton {
     case none
     case register
     case login
 }
 
 struct RegisterLoginView: View {
+    
+    @StateObject private var vM = RegisterLoginController()
+    
     //Animation variables
     @State private var toolbarHeight: CGFloat = 600
     @State private var logoSize = [800.0, 400.0]
     @State private var offSetLogo = [0.0, 0.0]
     @State private var appNameYOffset = 250.0
-    @State private var tappedButton : RegisterLoginView = .none
+    @State private var tappedButton : RegisterLoginViewButton = .none
     
     //Data capture for viewModel
     @State private var username = ""
@@ -28,10 +31,8 @@ struct RegisterLoginView: View {
     @State private var email = ""
     @State private var termsAccepted = false
     @State private var pPolicyAccepted = false
-
     
     
-    @EnvironmentObject private var vM : RegisterLoginController
     
     var body: some View {
         
@@ -41,12 +42,12 @@ struct RegisterLoginView: View {
         loginView
         
         
+        signUpView
+        
         if tappedButton == .none{
             Spacer()
             initialLoginSignupButton
         }
-        
-        signUpView
     }
 }
 

@@ -7,4 +7,9 @@
 
 import Foundation
 
-class UserStateModel
+class UserStateModel : ObservableObject{
+    
+    @Published var isLogged = false
+    @Published var 
+    
+}

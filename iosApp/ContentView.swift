@@ -8,8 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     @State private var showWalletMenu = false
     var body: some View {
+        mainView
+    }
+}
+
+
+extension ContentView{
+    var mainView: some View{
         ZStack(alignment: .topTrailing){
             NavigationBar()
                 .toolbar(showWalletMenu ? .hidden: .visible)

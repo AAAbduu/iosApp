@@ -9,14 +9,14 @@ import SwiftUI
 
 @main
 struct iosApp: App {
-    @StateObject var vm : RegisterLoginController
+    @StateObject var model = Model.shared
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                if (vm.isLogged) {
+                if (model.isLogggedIn) {
                     ContentView()
                 } else {
-                    Register()
+                    RegisterLoginView()
                 }
             }
         }

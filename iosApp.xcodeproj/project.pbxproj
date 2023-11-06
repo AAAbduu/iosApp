@@ -7,19 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		260E223E2ADD4D0500526F9F /* iosAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260E223D2ADD4D0500526F9F /* iosAppApp.swift */; };
+		260E223E2ADD4D0500526F9F /* iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260E223D2ADD4D0500526F9F /* iosApp.swift */; };
 		260E22402ADD4D0500526F9F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260E223F2ADD4D0500526F9F /* ContentView.swift */; };
 		260E22422ADD4D0700526F9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 260E22412ADD4D0700526F9F /* Assets.xcassets */; };
 		260E22452ADD4D0700526F9F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 260E22442ADD4D0700526F9F /* Preview Assets.xcassets */; };
 		260E224F2ADD4D0700526F9F /* iosAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260E224E2ADD4D0700526F9F /* iosAppTests.swift */; };
 		260E22592ADD4D0700526F9F /* iosAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260E22582ADD4D0700526F9F /* iosAppUITests.swift */; };
 		260E225B2ADD4D0700526F9F /* iosAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260E225A2ADD4D0700526F9F /* iosAppUITestsLaunchTests.swift */; };
-		260E226B2ADD538800526F9F /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260E226A2ADD538800526F9F /* Register.swift */; };
+		260E226B2ADD538800526F9F /* RegisterLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260E226A2ADD538800526F9F /* RegisterLoginView.swift */; };
+		26154E592AF6AB9300B3197F /* CheckBoxToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26154E582AF6AB9300B3197F /* CheckBoxToggleView.swift */; };
+		26176B322AF94590002C050F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26176B312AF94590002C050F /* Model.swift */; };
 		2648B6812ADFBCAB00CCE4AE /* FeedComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648B6802ADFBCAB00CCE4AE /* FeedComponentView.swift */; };
 		2648B6832ADFC42900CCE4AE /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648B6822ADFC42900CCE4AE /* FeedView.swift */; };
 		265B8BA82AEFE2F20017DD36 /* ProfileFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265B8BA72AEFE2F20017DD36 /* ProfileFilters.swift */; };
 		265C4DB32AED6A0300A7B018 /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265C4DB22AED6A0300A7B018 /* InputField.swift */; };
 		265C4DB72AED751400A7B018 /* ProfilePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265C4DB62AED751400A7B018 /* ProfilePreview.swift */; };
+		2674F8242AF81AEC00379308 /* RegisterLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2674F8232AF81AEC00379308 /* RegisterLoginController.swift */; };
 		269FA1432AE6897F00B3D20E /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FA1422AE6897F00B3D20E /* NavigationBarView.swift */; };
 		269FA1472AE68FCA00B3D20E /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FA1462AE68FCA00B3D20E /* ExploreView.swift */; };
 		269FA1492AE68FE800B3D20E /* Profile&ConfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FA1482AE68FE800B3D20E /* Profile&ConfView.swift */; };
@@ -49,7 +52,7 @@
 
 /* Begin PBXFileReference section */
 		260E223A2ADD4D0500526F9F /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		260E223D2ADD4D0500526F9F /* iosAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosAppApp.swift; sourceTree = "<group>"; };
+		260E223D2ADD4D0500526F9F /* iosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosApp.swift; sourceTree = "<group>"; };
 		260E223F2ADD4D0500526F9F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		260E22412ADD4D0700526F9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		260E22442ADD4D0700526F9F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -58,12 +61,15 @@
 		260E22542ADD4D0700526F9F /* iosAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iosAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		260E22582ADD4D0700526F9F /* iosAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosAppUITests.swift; sourceTree = "<group>"; };
 		260E225A2ADD4D0700526F9F /* iosAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		260E226A2ADD538800526F9F /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
+		260E226A2ADD538800526F9F /* RegisterLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterLoginView.swift; sourceTree = "<group>"; };
+		26154E582AF6AB9300B3197F /* CheckBoxToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxToggleView.swift; sourceTree = "<group>"; };
+		26176B312AF94590002C050F /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		2648B6802ADFBCAB00CCE4AE /* FeedComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedComponentView.swift; sourceTree = "<group>"; };
 		2648B6822ADFC42900CCE4AE /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		265B8BA72AEFE2F20017DD36 /* ProfileFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilters.swift; sourceTree = "<group>"; };
 		265C4DB22AED6A0300A7B018 /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
 		265C4DB62AED751400A7B018 /* ProfilePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePreview.swift; sourceTree = "<group>"; };
+		2674F8232AF81AEC00379308 /* RegisterLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterLoginController.swift; sourceTree = "<group>"; };
 		269FA1422AE6897F00B3D20E /* NavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		269FA1462AE68FCA00B3D20E /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		269FA1482AE68FE800B3D20E /* Profile&ConfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile&ConfView.swift"; sourceTree = "<group>"; };
@@ -122,9 +128,11 @@
 		260E223C2ADD4D0500526F9F /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				26176B302AF94581002C050F /* Model */,
+				2674F8212AF819AC00379308 /* ModelViews */,
 				2648B67F2ADFBC8100CCE4AE /* Components */,
 				260E22692ADD534100526F9F /* User Interfaces */,
-				260E223D2ADD4D0500526F9F /* iosAppApp.swift */,
+				260E223D2ADD4D0500526F9F /* iosApp.swift */,
 				260E223F2ADD4D0500526F9F /* ContentView.swift */,
 				260E22412ADD4D0700526F9F /* Assets.xcassets */,
 				260E22432ADD4D0700526F9F /* Preview Content */,
@@ -167,6 +175,14 @@
 			path = "User Interfaces";
 			sourceTree = "<group>";
 		};
+		26176B302AF94581002C050F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				26176B312AF94590002C050F /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		2648B67F2ADFBC8100CCE4AE /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,8 +191,25 @@
 				265C4DB22AED6A0300A7B018 /* InputField.swift */,
 				265C4DB62AED751400A7B018 /* ProfilePreview.swift */,
 				265B8BA72AEFE2F20017DD36 /* ProfileFilters.swift */,
+				26154E582AF6AB9300B3197F /* CheckBoxToggleView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		2674F8212AF819AC00379308 /* ModelViews */ = {
+			isa = PBXGroup;
+			children = (
+				2674F8222AF81AC800379308 /* RegisterLogin */,
+			);
+			path = ModelViews;
+			sourceTree = "<group>";
+		};
+		2674F8222AF81AC800379308 /* RegisterLogin */ = {
+			isa = PBXGroup;
+			children = (
+				2674F8232AF81AEC00379308 /* RegisterLoginController.swift */,
+			);
+			path = RegisterLogin;
 			sourceTree = "<group>";
 		};
 		269FA1442AE68F7200B3D20E /* Navigation */ = {
@@ -195,7 +228,7 @@
 		269FA1452AE68F9400B3D20E /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				260E226A2ADD538800526F9F /* Register.swift */,
+				260E226A2ADD538800526F9F /* RegisterLoginView.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -361,14 +394,17 @@
 				2648B6832ADFC42900CCE4AE /* FeedView.swift in Sources */,
 				26CA1BCE2AEEDC1C00E4EAC9 /* DetailedProfileView.swift in Sources */,
 				265C4DB72AED751400A7B018 /* ProfilePreview.swift in Sources */,
+				2674F8242AF81AEC00379308 /* RegisterLoginController.swift in Sources */,
 				2648B6812ADFBCAB00CCE4AE /* FeedComponentView.swift in Sources */,
-				260E226B2ADD538800526F9F /* Register.swift in Sources */,
+				260E226B2ADD538800526F9F /* RegisterLoginView.swift in Sources */,
 				269FA1432AE6897F00B3D20E /* NavigationBarView.swift in Sources */,
 				265B8BA82AEFE2F20017DD36 /* ProfileFilters.swift in Sources */,
 				260E22402ADD4D0500526F9F /* ContentView.swift in Sources */,
 				26B965C92AE809D800712EB3 /* WalletInfoView.swift in Sources */,
+				26154E592AF6AB9300B3197F /* CheckBoxToggleView.swift in Sources */,
 				269FA1472AE68FCA00B3D20E /* ExploreView.swift in Sources */,
-				260E223E2ADD4D0500526F9F /* iosAppApp.swift in Sources */,
+				260E223E2ADD4D0500526F9F /* iosApp.swift in Sources */,
+				26176B322AF94590002C050F /* Model.swift in Sources */,
 				269FA14E2AE6B6E300B3D20E /* WalletDescr.swift in Sources */,
 				26BC4A4A2AEAC44E0029A623 /* DetailedNftView.swift in Sources */,
 			);

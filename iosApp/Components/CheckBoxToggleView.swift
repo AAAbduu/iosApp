@@ -8,11 +8,34 @@
 import SwiftUI
 
 struct CheckBoxToggleView: View {
+    @Binding var isChecked : Bool
+    let holdingText: String
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+
+        HStack {
+
+            RoundedRectangle(cornerRadius: 5.0)
+                .stroke(lineWidth: 2)
+                .frame(width: 25, height: 25)
+                .cornerRadius(5.0)
+                .overlay {
+                    Image(systemName: isChecked ? "checkmark" : "")
+                }
+                .onTapGesture {
+                    withAnimation(.spring()) {
+                        isChecked.toggle()
+                    }
+                }
+                
+            Spacer()
+            Text(holdingText)
+            Spacer()
+        }
+        .frame(width: 250)        
     }
 }
 
 #Preview {
-    CheckBoxToggleView()
+    
+    CheckBoxToggleView(isChecked: .constant(false) , holdingText: "Hello")
 }

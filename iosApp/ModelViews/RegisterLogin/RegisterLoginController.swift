@@ -6,3 +6,18 @@
 //
 
 import Foundation
+
+
+class RegisterLoginController: ObservableObject {
+    
+    @Published var isLoggedIn : Bool = false
+    @Published var isBusy : Bool = false
+    
+    let model = Model.shared
+    
+    
+    func login(userName: String, password: String){
+        print(model.login(userName: userName, password: password))
+    }
+    
+}
