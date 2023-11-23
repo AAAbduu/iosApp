@@ -7,18 +7,27 @@
 
 import SwiftUI
 
+
+
+
 @main
 struct iosApp: App {
-    @StateObject var model = Model.shared
+    @StateObject var model = ModelMain.shared
+    
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                if (model.isLogggedIn) {
-                    ContentView()
-                } else {
+                switch model.authState {
+                case .signUpSignIn:
                     RegisterLoginView()
-                }
+                case .confirmSignUp(let username):
+                    ConfirmCodeSignUpView(userName: username)
+                case .session(let user):
+                    ContentView()
+                }                
             }
         }
     }
 }
+
+

@@ -1,0 +1,23 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-iosapp-staging-142040-authRole",
+      "UnauthRoleArn": "arn:aws:iam::179965154956:role/amplify-iosapp-staging-142040-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::179965154956:role/amplify-iosapp-staging-142040-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-iosapp-staging-142040-deployment",
+      "UnauthRoleName": "amplify-iosapp-staging-142040-unauthRole",
+      "StackName": "amplify-iosapp-staging-142040",
+      "StackId": "arn:aws:cloudformation:eu-north-1:179965154956:stack/amplify-iosapp-staging-142040/d45d35d0-7d78-11ee-91aa-0ea78ca3d538",
+      "AmplifyAppId": "d1b617m03xru03"
+    },
+    "categories": {
+      "auth": {
+        "IOSApp": {}
+      },
+      "api": {
+        "IOSApp": {}
+      }
+    }
+  }
+}

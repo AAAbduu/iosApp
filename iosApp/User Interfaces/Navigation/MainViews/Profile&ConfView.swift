@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct Profile_ConfView: View {
+    @ObservedObject private var vM = ProfileConfModelView()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button("Sign out"){
+            vM.signOut()
+        }
     }
 }
 

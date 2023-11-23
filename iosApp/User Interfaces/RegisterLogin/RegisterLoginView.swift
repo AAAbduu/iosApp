@@ -15,7 +15,7 @@ enum RegisterLoginViewButton {
 
 struct RegisterLoginView: View {
     
-    @StateObject private var vM = RegisterLoginController()
+    @StateObject private var vM = RegisterLoginModelView()
     
     //Animation variables
     @State private var toolbarHeight: CGFloat = 600
@@ -122,11 +122,15 @@ extension RegisterLoginView {
                         .padding(.bottom)
                     
                     
-                    InputField(text: $username, image: "person", placeHolder: "Username")
+                    InputField(text: $username, image: "person", placeHolder: "Username", isSecureField: false)
                         .frame(width: 300)
                         .padding(5.0)
-                    InputField(text: $password, image: "lock", placeHolder: "Password")
+                        .textInputAutocapitalization(.never)
+
+                    InputField(text: $password, image: "lock", placeHolder: "Password", isSecureField: true)
                         .frame(width: 300)
+                        .textInputAutocapitalization(.never)
+
                     
                     Button("Log in"){
                         vM.login(userName: username, password: password)
@@ -162,20 +166,27 @@ extension RegisterLoginView {
                         .fontWeight(.bold)
                         .padding(.bottom, 21.0)
                     
-                    InputField(text: $username, image: "person", placeHolder: "Username")
+                    InputField(text: $username, image: "person", placeHolder: "Username", isSecureField: false)
                         .frame(width: 300)
-                    InputField(text: $password, image: "lock", placeHolder: "Password")
+                        .textInputAutocapitalization(.never)
+
+                    InputField(text: $password, image: "lock", placeHolder: "Password", isSecureField: true)
                         .frame(width: 300)
-                    InputField(text: $password, image: "lock", placeHolder: "Repeat password")
+                        .textInputAutocapitalization(.never)
+
+                    InputField(text: $passwordRepeat, image: "lock", placeHolder: "Repeat password", isSecureField: true)
                         .frame(width: 300)
-                    InputField(text: $password, image: "envelope", placeHolder: "E-mail")
+                        .textInputAutocapitalization(.never)
+
+                    InputField(text: $email, image: "envelope", placeHolder: "E-mail", isSecureField: false)
                         .frame(width: 300)
+                        .textInputAutocapitalization(.never)
                     
                     CheckBoxToggleView( isChecked: $termsAccepted,holdingText: "Accept terms and services")
                     CheckBoxToggleView(isChecked:$pPolicyAccepted ,holdingText: "Accept privacy policy")
                     
                     Button("Sign up") {
-                        print("sign up button")
+                        vM.signup(username: username, password: password, repeatedPassword: passwordRepeat, email: email, acceptedTerms: termsAccepted, acceptedPolicy: pPolicyAccepted)
                     }
                     .padding(.top, 36.0)
                 }

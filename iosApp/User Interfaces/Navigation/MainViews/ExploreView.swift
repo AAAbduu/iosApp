@@ -13,7 +13,7 @@ struct ExploreView: View {
     var body: some View {
         VStack{
             
-            InputField(text: $searchText, image: imageExplore, placeHolder: "Search")
+            InputField(text: $searchText, image: imageExplore, placeHolder: "Search", isSecureField: false)
             ScrollView{
                 LazyVStack(spacing: 0){
                     ForEach(0 ... 7, id: \.self) { _ in

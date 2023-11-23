@@ -1,0 +1,35 @@
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  username: String
+  userAt: String
+  isContentCreator: Boolean
+  bioDescription: String
+  userEmail: AWSEmail
+  followingUsers: Int
+  usersFollowed: Int
+}
+
+type GeoGraphicalData {
+  longitudeDDegrees: Float
+  latitudeDDegrees: Float
+  region: String
+  city: String
+}
+
+type Post @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  userID: ID
+  postStatus: PostStatus
+  graphicalResource: AWSURL
+  whoClaimedUN: String
+  geographicalPostPosition: GeoGraphicalData
+  timePosted: AWSDateTime
+  timeToPublish: AWSDateTime
+}
+
+enum PostStatus {
+  PAST
+  LIVE
+  UPCOMING
+}
+ 
