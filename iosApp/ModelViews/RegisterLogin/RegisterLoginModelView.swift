@@ -17,6 +17,7 @@ class RegisterLoginModelView: ObservableObject {
     
     func login(userName: String, password: String){
         Task.detached {
+            //await self.model.signOutLocally()
             await print(self.model.signIn(username: userName, password: password))
         }
     }

@@ -1,35 +1,38 @@
 type User @model @auth(rules: [{allow: public}]) {
   id: ID!
-  username: String
-  userAt: String
-  isContentCreator: Boolean
-  bioDescription: String
+  userAt: String! @index (name: "userByUserAt", queryField: "userByUserAt")
   userEmail: AWSEmail
+  username: String
   followingUsers: Int
-  usersFollowed: Int
+  isContentCreator: Boolean
+  followingUsersAts: [String]
+  followedUsers: Int
+  followedUsersAts: [String]
+  bioDescription: String
+  posts: [Post] @hasMany
 }
 
-type GeoGraphicalData {
-  longitudeDDegrees: Float
-  latitudeDDegrees: Float
-  region: String
-  city: String
-}
 
 type Post @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  userID: ID
+  id: ID! 
+  postOwner: User! @belongsTo
+  postContent: String!
   postStatus: PostStatus
   graphicalResource: AWSURL
-  whoClaimedUN: String
-  geographicalPostPosition: GeoGraphicalData
+  whoClaimed: String
+  geoGraphicalPostPosition: GeoGraphicalData
   timePosted: AWSDateTime
   timeToPublish: AWSDateTime
 }
+
 
 enum PostStatus {
   PAST
   LIVE
   UPCOMING
 }
- 
+
+type GeoGraphicalData {
+  logitudeDDegrees: Float
+  latitudeDDegrees: Float
+}

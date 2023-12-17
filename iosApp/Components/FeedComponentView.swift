@@ -8,23 +8,29 @@
 import SwiftUI
 
 struct FeedComponentView: View {
+    let post: Post
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter
+    }()
     var body: some View {
         VStack(alignment: .leading ){
             //Here is content creator image and usrname
             HStack(){
                 Rectangle()
                     .frame(width: 64, height: 64)
-                Text("@SomeCreatorUsername")
+                Text("@\(post.postOwner.userAt)")
                     .font(.subheadline)
                     .multilineTextAlignment(.leading)
                 Spacer()
-                Text("Time")
-                    .font(.caption)
+                //Text(post.timePosted, formatter: dateFormatter)
+                  //  .font(.caption)
                 
             }
             .padding(.top)
             //This is the content of a post. It should not exceed more than 3 lines of text.
-            Text("Here is the content of the post created by the content creator")
+            Text(post.postContent)
                 .padding(.leading, 64)
             //Here is a graphical rsc of what is to be found and the button to get in the post
             HStack(alignment: .bottom){
@@ -48,5 +54,5 @@ struct FeedComponentView: View {
 }
 
 #Preview {
-    FeedComponentView()
+    FeedComponentView(post: Post(postOwner: User(userAt: "abdu"), postContent: ""))
 }

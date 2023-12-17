@@ -11,9 +11,9 @@ class ConfirmSignUpModelView : ObservableObject{
     
     let model = ModelMain.shared
 
-    func confirmCode(username: String, code: String){
+    func confirmCode(currentUser: User, code: String){
         Task.detached{
-            await self.model.confirm(username: username, code: code)
+            await self.model.confirm(currentUser: currentUser, code: code)
         }
     }
 }

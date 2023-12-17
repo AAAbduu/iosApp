@@ -6,11 +6,12 @@ extension Post {
   // MARK: - CodingKeys 
    public enum CodingKeys: String, ModelKey {
     case id
-    case userID
+    case postOwner
+    case postContent
     case postStatus
     case graphicalResource
-    case whoClaimedUN
-    case geographicalPostPosition
+    case whoClaimed
+    case geoGraphicalPostPosition
     case timePosted
     case timeToPublish
     case createdAt
@@ -36,11 +37,12 @@ extension Post {
     
     model.fields(
       .field(post.id, is: .required, ofType: .string),
-      .field(post.userID, is: .optional, ofType: .string),
+      .belongsTo(post.postOwner, is: .required, ofType: User.self, targetNames: ["userPostsId"]),
+      .field(post.postContent, is: .required, ofType: .string),
       .field(post.postStatus, is: .optional, ofType: .enum(type: PostStatus.self)),
       .field(post.graphicalResource, is: .optional, ofType: .string),
-      .field(post.whoClaimedUN, is: .optional, ofType: .string),
-      .field(post.geographicalPostPosition, is: .optional, ofType: .embedded(type: GeoGraphicalData.self)),
+      .field(post.whoClaimed, is: .optional, ofType: .string),
+      .field(post.geoGraphicalPostPosition, is: .optional, ofType: .embedded(type: GeoGraphicalData.self)),
       .field(post.timePosted, is: .optional, ofType: .dateTime),
       .field(post.timeToPublish, is: .optional, ofType: .dateTime),
       .field(post.createdAt, is: .optional, isReadOnly: true, ofType: .dateTime),

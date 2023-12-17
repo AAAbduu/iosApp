@@ -10,13 +10,14 @@ import SwiftUI
 struct FeedView: View {
     @State var userWantsPost = false
 
+    
     var body: some View {
         ZStack{
             
             ScrollView{
                 LazyVStack{
                     ForEach(0 ... 10, id: \.self) { _ in
-                        FeedComponentView()
+                        FeedComponentView(post: Post(postOwner: User(userAt: "Abdu"), postContent: ""))
                     }
                 }
             }

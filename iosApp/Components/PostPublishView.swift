@@ -56,7 +56,7 @@ struct PostPublishView: View {
                         withAnimation(){
                             show = false
                         }
-                        vM.publishPost(graphicalResource: postURL, whoClaimed: "", coordinates: coordinates , timePosted: Date(), timeToPublish: selectedDate)
+                        vM.publishPost(postContent: postDescription, graphicalResource: postURL, whoClaimed: "", coordinates: coordinates , timePosted: Date(), timeToPublish: selectedDate)
                     }){
                         Text("Publish")
                             .fontWeight(.bold)

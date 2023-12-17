@@ -9,16 +9,18 @@ import SwiftUI
 
 struct ConfirmCodeSignUpView: View {
     @StateObject private var vM = ConfirmSignUpModelView()
-    let userName: String
+    let currentUser: User
     @State private var textcode = ""
     var body: some View {
         VStack{
             Spacer()
             Text("Confirm your account")
                 .font(.largeTitle)
-            Text(userName)
-                .font(.title3)
-                .padding(.bottom, 42.0)
+            if let username = currentUser.username{
+                Text(username)
+                    .font(.title3)
+                    .padding(.bottom, 42.0)
+            }
             
             
             
@@ -33,7 +35,7 @@ struct ConfirmCodeSignUpView: View {
                 .frame(width: 300)
             
             Button("Confirm"){
-                vM.confirmCode(username: userName, code: textcode)
+                vM.confirmCode(currentUser: currentUser, code: textcode)
             }
             .padding(.top)
             
@@ -43,5 +45,5 @@ struct ConfirmCodeSignUpView: View {
 }
 
 #Preview {
-    ConfirmCodeSignUpView(userName : "Pedro")
+    ConfirmCodeSignUpView(currentUser: User(userAt: "username", userEmail: "email", username: "username", followingUsers: 0, isContentCreator: false, followingUsersAts: nil, followedUsers: 0, followedUsersAts: nil, bioDescription: "", posts: nil))
 }

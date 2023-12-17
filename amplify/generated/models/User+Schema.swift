@@ -6,13 +6,16 @@ extension User {
   // MARK: - CodingKeys 
    public enum CodingKeys: String, ModelKey {
     case id
-    case username
     case userAt
-    case isContentCreator
-    case bioDescription
     case userEmail
+    case username
     case followingUsers
-    case usersFollowed
+    case isContentCreator
+    case followingUsersAts
+    case followedUsers
+    case followedUsersAts
+    case bioDescription
+    case posts
     case createdAt
     case updatedAt
   }
@@ -31,18 +34,22 @@ extension User {
     model.syncPluralName = "Users"
     
     model.attributes(
+      .index(fields: ["userAt"], name: "userByUserAt"),
       .primaryKey(fields: [user.id])
     )
     
     model.fields(
       .field(user.id, is: .required, ofType: .string),
-      .field(user.username, is: .optional, ofType: .string),
-      .field(user.userAt, is: .optional, ofType: .string),
-      .field(user.isContentCreator, is: .optional, ofType: .bool),
-      .field(user.bioDescription, is: .optional, ofType: .string),
+      .field(user.userAt, is: .required, ofType: .string),
       .field(user.userEmail, is: .optional, ofType: .string),
+      .field(user.username, is: .optional, ofType: .string),
       .field(user.followingUsers, is: .optional, ofType: .int),
-      .field(user.usersFollowed, is: .optional, ofType: .int),
+      .field(user.isContentCreator, is: .optional, ofType: .bool),
+      .field(user.followingUsersAts, is: .optional, ofType: .embeddedCollection(of: String.self)),
+      .field(user.followedUsers, is: .optional, ofType: .int),
+      .field(user.followedUsersAts, is: .optional, ofType: .embeddedCollection(of: String.self)),
+      .field(user.bioDescription, is: .optional, ofType: .string),
+      .hasMany(user.posts, is: .optional, ofType: Post.self, associatedWith: Post.keys.postOwner),
       .field(user.createdAt, is: .optional, isReadOnly: true, ofType: .dateTime),
       .field(user.updatedAt, is: .optional, isReadOnly: true, ofType: .dateTime)
     )

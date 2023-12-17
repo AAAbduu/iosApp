@@ -3,7 +3,7 @@
   "cognitoConfig": {
     "identityPoolName": "testAuthIdentityPool",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "iosapp978b86df",
+    "resourceNameTruncated": "iosappd0c1e430",
     "userPoolName": "IOSApp",
     "autoVerifiedAttributes": [
       "email"
@@ -25,17 +25,17 @@
       "Requires Uppercase"
     ],
     "requiredAttributes": [
-      "email",
-      "preferred_username"
+      "preferred_username",
+      "email"
     ],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [],
     "userpoolClientReadAttributes": [],
-    "userpoolClientLambdaRole": "IOSApp978b86df_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "IOSAppd0c1e430_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "978b86df",
+    "sharedId": "d0c1e430",
     "resourceName": "IOSApp",
     "authSelections": "identityPoolAndUserPool",
     "serviceName": "Cognito",

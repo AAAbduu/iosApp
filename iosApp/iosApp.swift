@@ -20,11 +20,11 @@ struct iosApp: App {
                 switch model.authState {
                 case .signUpSignIn:
                     RegisterLoginView()
-                case .confirmSignUp(let username):
-                    ConfirmCodeSignUpView(userName: username)
+                case .confirmSignUp(let user):
+                    ConfirmCodeSignUpView(currentUser: user)
                 case .session(let user):
-                    ContentView()
-                }                
+                    ContentView(user: user)
+                }
             }
         }
     }

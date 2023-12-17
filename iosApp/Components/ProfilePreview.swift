@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct ProfilePreview: View {
+    let user: User
     var body: some View {
-        NavigationLink(destination: DetailedProfileView()) {
+        NavigationLink(destination: DetailedProfileView(user: user)) {
             HStack {
                 Circle()
                     .frame(width: 64, height: 64)
                 VStack(alignment: .leading) {
-                    Text("Content creator name")
+                    Text(user.username ?? "error")
                         .fontWeight(.bold)
-                    Text("@ContentCreator")
+                    Text("@\(user.userAt)")
                         .font(.caption)
                 }
                 Spacer()
@@ -28,5 +29,5 @@ struct ProfilePreview: View {
 }
 
 #Preview {
-    ProfilePreview()
+    ProfilePreview(user: User(userAt: "p", userEmail: "email", username: "p", followedUsers: 0, followedUsersAts: nil))
 }

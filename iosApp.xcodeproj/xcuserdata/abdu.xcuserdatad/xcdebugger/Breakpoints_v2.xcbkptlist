@@ -3,4 +3,70 @@
    uuid = "D6243B93-BD85-41F6-A3D5-46BA5CE673C4"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "78852568-C4C1-4A72-A903-468E1FCE4A7A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iosApp/User Interfaces/Navigation/DetailedProfileView/DetailedProfileView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "statsFollow"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "98AB28DF-4A88-4E7B-87C5-A9E804DACAC1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iosApp/User Interfaces/Navigation/DetailedProfileView/DetailedProfileView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "98AB28DF-4A88-4E7B-87C5-A9E804DACAC1 - df43a055edcbf764"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Int) -&gt; Swift.Optional&lt;iosApp.FeedComponentView&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, Swift.Optional&lt;iosApp.FeedComponentView&gt;&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of iosApp.DetailedProfileView.profilePics : some&gt;&gt;.0, &lt;&lt;opaque return type of iosApp.DetailedProfileView.statsFollow : some&gt;&gt;.0, &lt;&lt;opaque return type of iosApp.DetailedProfileView.postSelectedFilter : some&gt;&gt;.0, SwiftUI.LazyVStack&lt;SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, Swift.Optional&lt;iosApp.FeedComponentView&gt;&gt;&gt;)&gt; in iosApp.DetailedProfileView.body.getter : some"
+                  moduleName = "iosApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abdu/Desktop/Hogent/Cuatri/IOS/finalProject/iosApp/iosApp/User%20Interfaces/Navigation/DetailedProfileView/DetailedProfileView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "600">
+               </Location>
+               <Location
+                  uuid = "98AB28DF-4A88-4E7B-87C5-A9E804DACAC1 - df43a055edcbf764"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Int) -&gt; Swift.Optional&lt;iosApp.FeedComponentView&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, Swift.Optional&lt;iosApp.FeedComponentView&gt;&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of iosApp.DetailedProfileView.profilePics : some&gt;&gt;.0, &lt;&lt;opaque return type of iosApp.DetailedProfileView.statsFollow : some&gt;&gt;.0, &lt;&lt;opaque return type of iosApp.DetailedProfileView.postSelectedFilter : some&gt;&gt;.0, SwiftUI.LazyVStack&lt;SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, Swift.Optional&lt;iosApp.FeedComponentView&gt;&gt;&gt;)&gt; in iosApp.DetailedProfileView.body.getter : some"
+                  moduleName = "iosApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abdu/Desktop/Hogent/Cuatri/IOS/finalProject/iosApp/iosApp/User%20Interfaces/Navigation/DetailedProfileView/DetailedProfileView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "572">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

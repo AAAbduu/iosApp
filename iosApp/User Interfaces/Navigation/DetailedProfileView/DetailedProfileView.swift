@@ -10,6 +10,8 @@ import SwiftUI
 struct DetailedProfileView: View {
     @State private var profileFilter: ProfileFilters = .live
     @Namespace var slideSelectedFilter
+    @StateObject var vM = DetailedProfileModelView()
+    let user: User
     var body: some View {
         ScrollView{
             
@@ -19,9 +21,13 @@ struct DetailedProfileView: View {
             
             postSelectedFilter
             
+            
+            
             LazyVStack{
-                ForEach(0 ... 10, id: \.self) { _ in
-                    FeedComponentView()
+                ForEach(vM.posts.indices, id: \.self) { index in
+                    if vM.posts[index].postStatus?.rawValue == profileFilter.postStatus{
+                        FeedComponentView(post: vM.posts[index])
+                    }
                 }
             }
         }
@@ -31,7 +37,7 @@ struct DetailedProfileView: View {
 
 
 #Preview {
-    DetailedProfileView()
+    DetailedProfileView(user: User(userAt: "p", userEmail: "email", username: "p", followedUsers: 0, followedUsersAts: nil))
 }
 
 extension DetailedProfileView{
@@ -50,28 +56,47 @@ extension DetailedProfileView{
     var statsFollow: some View{
         //Follower stats, name and folow/unfollow button
         VStack {
-            HStack(alignment: .center){
-                Spacer()
+            ZStack(alignment: .center){
+                
                 VStack(alignment: .center){
-                    Text("Creators Name")
-                    Text("@contentCreator")
+                    Text(user.username ?? "error")
+                        .font(.headline)
+                    Text("@\(user.userAt)")
+                        .font(.caption)
+                        .foregroundStyle(.gray)
                 }
-                .padding(.leading, 70)
-                Spacer()
-                Button(action: {
-                    print("Following button")
-                }) {
-                    Text("Follow")
+                
+                
+                if user.id != vM.model.currentUser?.id{
+                    Button(action: {
+                        print("Following button")
+                    }) {
+                        Text("Follow")
+                    }
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .padding(.trailing)
+                }else{
+                    NavigationLink{
+                        DetailedProfileView(user: user)
+                    }label: {
+                        Image(systemName: "pencil.circle")
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                            .padding(.trailing)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                    }
                 }
-                .padding(.trailing)
             }
+            
             .padding(.vertical, 5.0)
             
-            Text("Some bio information given by the content creator")
+            Text(user.bioDescription ?? "")
             
             HStack{
-                Text("Following")
-                Text("Followers")
+                let followedUser = String(user.followedUsers ?? 0)
+                let followingUsers = String(user.followingUsers ?? 0)
+                Text("Following: \(followedUser)")
+                Text("Followers: \(followingUsers)")
                 Spacer()
             }
             .padding([.top, .leading, .bottom])

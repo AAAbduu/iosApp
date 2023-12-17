@@ -19,4 +19,12 @@ enum ProfileFilters: Int, CaseIterable{
         case .past: return "Past"
         }
     }
+    
+    var postStatus: String{
+        switch self{
+        case .live: return "LIVE"
+        case .upcoming: return "UPCOMING"
+        case .past: return "PAST"
+        }
+    }
 }

@@ -25,7 +25,7 @@ struct RegisterLoginView: View {
     @State private var tappedButton : RegisterLoginViewButton = .none
     
     //Data capture for viewModel
-    @State private var username = ""
+    @State private var username = "abdu"
     @State private var password = ""
     @State private var passwordRepeat = ""
     @State private var email = ""
