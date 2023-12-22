@@ -10,8 +10,15 @@ import SwiftUI
 struct DetailedProfileView: View {
     @State private var profileFilter: ProfileFilters = .live
     @Namespace var slideSelectedFilter
-    @StateObject var vM = DetailedProfileModelView()
     let user: User
+    @StateObject var vM: DetailedProfileModelView
+
+       // Initialize with the visited user
+       init(user: User) {
+           self.user = user
+           self._vM = StateObject(wrappedValue: DetailedProfileModelView(visitedUser: user))
+       }
+    
     var body: some View {
         ScrollView{
             
@@ -37,7 +44,7 @@ struct DetailedProfileView: View {
 
 
 #Preview {
-    DetailedProfileView(user: User(userAt: "p", userEmail: "email", username: "p", followedUsers: 0, followedUsersAts: nil))
+    DetailedProfileView(user: User(userAt: "p", userEmail: "email", username: "p", followingUsers: 0, isContentCreator: false, followedUsers: 0, followedUsersAts: nil))
 }
 
 extension DetailedProfileView{
@@ -59,25 +66,33 @@ extension DetailedProfileView{
             ZStack(alignment: .center){
                 
                 VStack(alignment: .center){
-                    Text(user.username ?? "error")
+                    Text(vM.visitedUser.username ?? "")
                         .font(.headline)
-                    Text("@\(user.userAt)")
+                    Text("@\(vM.visitedUser.userAt)")
                         .font(.caption)
                         .foregroundStyle(.gray)
                 }
                 
                 
-                if user.id != vM.model.currentUser?.id{
+                if user.id != vM.model.currentUser?.id && self.vM.following == false{
                     Button(action: {
-                        print("Following button")
+                        self.vM.followUser()
                     }) {
                         Text("Follow")
                     }
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     .padding(.trailing)
+                }else if self.vM.following{
+                    Button(action: {
+                        self.vM.unfollowUser()
+                    }) {
+                        Text("Unfollow")
+                    }
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .padding(.trailing)
                 }else{
                     NavigationLink{
-                        DetailedProfileView(user: user)
+                        EditProfileFieldsView(user: user)
                     }label: {
                         Image(systemName: "pencil.circle")
                             .resizable()
@@ -93,10 +108,12 @@ extension DetailedProfileView{
             Text(user.bioDescription ?? "")
             
             HStack{
-                let followedUser = String(user.followedUsers ?? 0)
-                let followingUsers = String(user.followingUsers ?? 0)
+                let followedUser = String(vM.visitedUser.followedUsers)
+                let followingUsers = String(vM.visitedUser.followingUsers)
                 Text("Following: \(followedUser)")
-                Text("Followers: \(followingUsers)")
+                if vM.visitedUser.isContentCreator{
+                    Text("Followers: \(followingUsers)")
+                }
                 Spacer()
             }
             .padding([.top, .leading, .bottom])

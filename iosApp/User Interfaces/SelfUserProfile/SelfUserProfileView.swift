@@ -24,8 +24,10 @@ struct SelfUserProfileView: View {
                 }
                 
                 HStack{
-                    Text("Followers: 0")
-                    Text("Following: 0")
+                    if user.isContentCreator{
+                        Text("Followers: \(user.followingUsers)")
+                    }
+                    Text("Following: \(user.followedUsers)")
                 }.padding(.vertical)
             }
             .padding(.horizontal)
@@ -59,7 +61,7 @@ struct SelfUserProfileView: View {
     }
 }
 #Preview {
-    SelfUserProfileView(user: User(userAt: "p", userEmail: "email", username: "p", followedUsers: 0, followedUsersAts: nil))
+    SelfUserProfileView(user: User(userAt: "p", userEmail: "email", username: "p", followingUsers: 0,  isContentCreator: false, followedUsers: 0, followedUsersAts: nil))
 }
 
 enum SideUserMenuItems: Int, CaseIterable{

@@ -9,33 +9,59 @@ import SwiftUI
 import MapKit
 
 struct DetailedNftView: View {
-
+    let post: Post
+    @State private var cameraPosition: MapCameraPosition = .automatic
+    @StateObject var vM: DetailedNFTModelView
+    private var coordinates = CLLocationCoordinate2D()
+    @State private var canBeClaimed = false
+    init(post: Post){
+        self.post = post
+        self.coordinates.animatableData.first = post.geoGraphicalPostPosition.latitudeDDegrees
+        self.coordinates.animatableData.second = post.geoGraphicalPostPosition.logitudeDDegrees
+        self._vM = StateObject(wrappedValue: DetailedNFTModelView(post: post))
+        
+    }
     var body: some View {
         VStack(alignment: .center){
             //Creator pic and name goes here
             HStack{
-                Rectangle()
+                Circle()
                     .frame(width: 64, height: 64)
-                Text("@ContentCreator")
+                Text("@\(post.postOwner.userAt)")
             }
             .padding()
             //NFT 3d resource and description goes here
             VStack{
-                Text("This is a description of the NFT that is just below, full width and 200 height will be given in case some kind of animation wants to be played here.")
+                Text(post.postContent)
                     .padding([.top, .leading, .trailing])
                 Rectangle()
                     .frame(width: 1000, height: 200)
                 
             }
-            //Map goes here, telling the position of the nft just below
-        
+            Map(position: $cameraPosition){
+                Marker("NFT", coordinate: self.coordinates)
+            }
+            .frame(height: .infinity)
+            .mapStyle(.standard(elevation: .realistic))
+            .mapControls {
+                MapUserLocationButton()
+            }
+            
             Spacer()
-            Button(action: {print("Claim")}, label: {Text("Claim")})
-                .border(Color.black)
+            if vM.post.whoClaimed == nil{
+                Button(action: { vM.claimPost()}, label: { Text("Claim") })
+                    .onChange(of: LocationManager.shared.userLocation) { _, _ in
+                        vM.updateCanBeClaimed()
+                    }
+                    .disabled(!vM.canBeClaimedValue)
+            }else{
+                Text("This NFT has been claimed by \(vM.post.whoClaimed?.userAt ?? "none")")
+            }
         }
     }
+    
 }
 
 #Preview {
-    DetailedNftView()
+    DetailedNftView(post: Post(id: "", postOwner: User(id: "", userAt: "", userEmail: "", username: "", followingUsers: 0, isContentCreator: true, followingUsersAts: nil, followedUsers: 0, followedUsersAts: nil, bioDescription: "", profileImageKey: "", bannerImageKey: "", posts: nil), postContent: "", postStatus: nil, graphicalResourceKey: "", geoGraphicalPostPosition: GeoGraphicalData(logitudeDDegrees: 0, latitudeDDegrees: 0), timePosted: nil, timeToPublish: nil, ethPrice: nil))
 }

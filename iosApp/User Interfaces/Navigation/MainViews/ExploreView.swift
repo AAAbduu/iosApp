@@ -9,13 +9,17 @@ import SwiftUI
 
 struct ExploreView: View {
     @State private var searchText = ""
-    @State private var imageExplore = "magnifyingglass"
+    private var imageExplore = "magnifyingglass"
     @StateObject private var vM = ExploreModelView()
     /*User(id: "", userAt: "", userEmail: "", username: "", followingUsers: 0, isContentCreator: false, followingUsersAts: nil, followedUsers: 0, followedUsersAts: nil, bioDescription: "", posts: nil, createdAt: nil, updatedAt: nil)*/
     var body: some View {
         VStack{
             
             InputField(text: $searchText, image: imageExplore, placeHolder: "Search @", isSecureField: false)
+                .textInputAutocapitalization(.never)
+                .onAppear(perform: {
+                    vM.searchUserByInput(userAt: searchText)
+                })
                 .onChange(of: searchText){
                     vM.searchUserByInput(userAt: searchText)
                 }

@@ -7,12 +7,15 @@ public struct User: Model {
   public var userAt: String
   public var userEmail: String?
   public var username: String?
-  public var followingUsers: Int?
-  public var isContentCreator: Bool?
+  public var followingUsers: Int
+  public var isContentCreator: Bool
   public var followingUsersAts: [String?]?
-  public var followedUsers: Int?
+  public var followedUsers: Int
   public var followedUsersAts: [String?]?
   public var bioDescription: String?
+  public var profileImageKey: String?
+  public var bannerImageKey: String?
+  public var claimedNFTs: List<Post>?
   public var posts: List<Post>?
   public var createdAt: Temporal.DateTime?
   public var updatedAt: Temporal.DateTime?
@@ -21,12 +24,15 @@ public struct User: Model {
       userAt: String,
       userEmail: String? = nil,
       username: String? = nil,
-      followingUsers: Int? = nil,
-      isContentCreator: Bool? = nil,
+      followingUsers: Int,
+      isContentCreator: Bool,
       followingUsersAts: [String?]? = nil,
-      followedUsers: Int? = nil,
+      followedUsers: Int,
       followedUsersAts: [String?]? = nil,
       bioDescription: String? = nil,
+      profileImageKey: String? = nil,
+      bannerImageKey: String? = nil,
+      claimedNFTs: List<Post>? = [],
       posts: List<Post>? = []) {
     self.init(id: id,
       userAt: userAt,
@@ -38,6 +44,9 @@ public struct User: Model {
       followedUsers: followedUsers,
       followedUsersAts: followedUsersAts,
       bioDescription: bioDescription,
+      profileImageKey: profileImageKey,
+      bannerImageKey: bannerImageKey,
+      claimedNFTs: claimedNFTs,
       posts: posts,
       createdAt: nil,
       updatedAt: nil)
@@ -46,12 +55,15 @@ public struct User: Model {
       userAt: String,
       userEmail: String? = nil,
       username: String? = nil,
-      followingUsers: Int? = nil,
-      isContentCreator: Bool? = nil,
+      followingUsers: Int,
+      isContentCreator: Bool,
       followingUsersAts: [String?]? = nil,
-      followedUsers: Int? = nil,
+      followedUsers: Int,
       followedUsersAts: [String?]? = nil,
       bioDescription: String? = nil,
+      profileImageKey: String? = nil,
+      bannerImageKey: String? = nil,
+      claimedNFTs: List<Post>? = [],
       posts: List<Post>? = [],
       createdAt: Temporal.DateTime? = nil,
       updatedAt: Temporal.DateTime? = nil) {
@@ -65,6 +77,9 @@ public struct User: Model {
       self.followedUsers = followedUsers
       self.followedUsersAts = followedUsersAts
       self.bioDescription = bioDescription
+      self.profileImageKey = profileImageKey
+      self.bannerImageKey = bannerImageKey
+      self.claimedNFTs = claimedNFTs
       self.posts = posts
       self.createdAt = createdAt
       self.updatedAt = updatedAt

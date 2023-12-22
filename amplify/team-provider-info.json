@@ -17,6 +17,9 @@
       },
       "api": {
         "IOSApp": {}
+      },
+      "storage": {
+        "s3iosappstoragenftcontent": {}
       }
     }
   }

@@ -3,6 +3,6 @@ import Amplify
 import Foundation
 
 public struct GeoGraphicalData: Embeddable {
-  var logitudeDDegrees: Double?
-  var latitudeDDegrees: Double?
+  var logitudeDDegrees: Double
+  var latitudeDDegrees: Double
 }

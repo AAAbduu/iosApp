@@ -1,0 +1,11 @@
+{
+  "resourceName": "s3iosappstoragenftcontent",
+  "bucketName": "iosapp-storage-nft-content",
+  "policyUUID": "5db0915f",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ]
+}

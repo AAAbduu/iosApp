@@ -36,7 +36,7 @@ struct FeedComponentView: View {
             HStack(alignment: .bottom){
                 Rectangle()
                     .frame(width: 250, height: 120)
-                NavigationLink(destination: DetailedNftView()){
+                NavigationLink(destination: DetailedNftView(post: post)){
                     Circle()
                         .frame(width: 56, height: 56)
                 }
@@ -54,5 +54,5 @@ struct FeedComponentView: View {
 }
 
 #Preview {
-    FeedComponentView(post: Post(postOwner: User(userAt: "abdu"), postContent: ""))
+    FeedComponentView(post: Post(postOwner: User(userAt: "abdu", followingUsers: 0, isContentCreator: false, followedUsers: 0), postContent: "", geoGraphicalPostPosition: GeoGraphicalData(logitudeDDegrees: 0, latitudeDDegrees: 0)))
 }

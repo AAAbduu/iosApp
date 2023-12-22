@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    let user : User
     @State private var showSideMenu = false
     @State private var showWalletMenu = false
-    let user : User
     var body: some View {
         mainView
     }
@@ -50,6 +50,7 @@ extension ContentView{
                 .frame(width: 330)
                 .offset(x: showWalletMenu ? 0: 400, y:0)
             
+            
             SelfUserProfileView(user: user)
                 .frame(width: 330)
                 .offset(x: showSideMenu ? 0: -400, y:0)
@@ -84,5 +85,5 @@ extension ContentView{
 }
 
 #Preview {
-    ContentView(user: User(userAt: "p", userEmail: "email", username: "p", followedUsers: 0, followedUsersAts: nil))
+    ContentView(user: User(id: "", userAt: "", userEmail: "", username: "", followingUsers: 0, isContentCreator: false, followingUsersAts: nil, followedUsers: 0, followedUsersAts: nil, bioDescription: "", profileImageKey: "", bannerImageKey: "", claimedNFTs: nil, posts: nil))
 }

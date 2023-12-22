@@ -17,14 +17,17 @@ class ExploreModelView : ObservableObject{
         let userID = await self.model.getUserByUserAt(username: userAt)
             
         if let user = await self.model.getUser(userID: userID ?? "0"){
-            return user
+            return user.isContentCreator ? user : nil //Only able to find contentCreators
         }
         return nil
     }
     
     func searchUserByInput(userAt: String) {
-        Task.detached{
-            self.foundUser = await self.searchUser(userAt: userAt)
+        Task{
+            let found = await self.searchUser(userAt: userAt)
+            DispatchQueue.main.async{
+                self.foundUser = found
+            }
         }
     }
 }

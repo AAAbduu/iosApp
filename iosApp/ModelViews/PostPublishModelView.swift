@@ -13,14 +13,14 @@ class PostPublishModelView: ObservableObject{
     let model = ModelMain.shared
     
     
-    func publishPost(postContent: String, graphicalResource: String, whoClaimed: String, coordinates: CLLocationCoordinate2D , timePosted: Date, timeToPublish: Date){
+    func publishPost(postContent: String, graphicalResourceKey: String, whoClaimed: String, coordinates: CLLocationCoordinate2D , timePosted: Date, timeToPublish: Date){
         
         
         
-        let geoGraphicalData : GeoGraphicalData = GeoGraphicalData(logitudeDDegrees: coordinates.animatableData.first, latitudeDDegrees: coordinates.animatableData.second)
+        let geoGraphicalData : GeoGraphicalData = GeoGraphicalData(logitudeDDegrees: coordinates.animatableData.second, latitudeDDegrees: coordinates.animatableData.first)
         
         Task.detached {
-            await self.model.createPost(postContent: postContent, graphicalResource: graphicalResource, whoClaimed: whoClaimed, geoGraphicaPostPos: geoGraphicalData, timePosted: timePosted, timeToPublish: timeToPublish)
+            await self.model.createPost(postContent: postContent, graphicalResourceKey: graphicalResourceKey, whoClaimed: whoClaimed, geoGraphicaPostPos: geoGraphicalData, timePosted: timePosted, timeToPublish: timeToPublish)
         }
     }
     

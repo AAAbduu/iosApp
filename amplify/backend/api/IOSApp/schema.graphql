@@ -3,26 +3,33 @@ type User @model @auth(rules: [{allow: public}]) {
   userAt: String! @index (name: "userByUserAt", queryField: "userByUserAt")
   userEmail: AWSEmail
   username: String
-  followingUsers: Int
-  isContentCreator: Boolean
+  followingUsers: Int!
+  isContentCreator: Boolean!
   followingUsersAts: [String]
-  followedUsers: Int
+  followedUsers: Int!
   followedUsersAts: [String]
   bioDescription: String
-  posts: [Post] @hasMany
+  profileImageKey: String
+  bannerImageKey: String
+  claimedNFTs: [Post]! @hasMany(indexName: "claimed",fields: ["id"] )
+  posts: [Post] @hasMany(indexName: "owner",fields: ["id"] )
 }
 
 
-type Post @model @auth(rules: [{allow: public}]) {
-  id: ID! 
-  postOwner: User! @belongsTo
+
+type Post @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  postOwner: User! @belongsTo(fields: ["postOwnerId"])
   postContent: String!
   postStatus: PostStatus
-  graphicalResource: AWSURL
-  whoClaimed: String
-  geoGraphicalPostPosition: GeoGraphicalData
+  graphicalResourceKey: String
+  whoClaimed: User @belongsTo(fields: ["whoClaimedId"])
+  geoGraphicalPostPosition: GeoGraphicalData!
   timePosted: AWSDateTime
   timeToPublish: AWSDateTime
+  ethPrice: Float
+  postOwnerId: ID! @index(name: "owner")
+  whoClaimedId: ID @index(name: "claimed")
 }
 
 
@@ -33,6 +40,6 @@ enum PostStatus {
 }
 
 type GeoGraphicalData {
-  logitudeDDegrees: Float
-  latitudeDDegrees: Float
+  logitudeDDegrees: Float!
+  latitudeDDegrees: Float!
 }

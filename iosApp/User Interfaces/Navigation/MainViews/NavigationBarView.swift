@@ -24,6 +24,7 @@ struct NavigationBar: View {
                     Image(systemName: "house")
                 }
                 .tag(Tabs.Home)
+                
             ExploreView()
                 .tabItem{
                     Image(systemName: "magnifyingglass")

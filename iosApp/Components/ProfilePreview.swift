@@ -29,5 +29,5 @@ struct ProfilePreview: View {
 }
 
 #Preview {
-    ProfilePreview(user: User(userAt: "p", userEmail: "email", username: "p", followedUsers: 0, followedUsersAts: nil))
+    ProfilePreview(user: User(userAt: "p", userEmail: "email", username: "p", followingUsers: 0, isContentCreator: false, followedUsers: 0, followedUsersAts: nil))
 }

@@ -14,6 +14,10 @@ import SwiftUI
 struct iosApp: App {
     @StateObject var model = ModelMain.shared
     
+    init(){
+        LocationManager.shared.requestLocation()
+    }
+    
     var body: some Scene {
         WindowGroup {
             NavigationStack {
@@ -22,8 +26,10 @@ struct iosApp: App {
                     RegisterLoginView()
                 case .confirmSignUp(let user):
                     ConfirmCodeSignUpView(currentUser: user)
-                case .session(let user):
-                    ContentView(user: user)
+                case .session(_):
+                    if let unwUser = self.model.currentUser{
+                        ContentView(user: unwUser)
+                    }
                 }
             }
         }

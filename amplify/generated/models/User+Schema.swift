@@ -15,6 +15,9 @@ extension User {
     case followedUsers
     case followedUsersAts
     case bioDescription
+    case profileImageKey
+    case bannerImageKey
+    case claimedNFTs
     case posts
     case createdAt
     case updatedAt
@@ -43,12 +46,15 @@ extension User {
       .field(user.userAt, is: .required, ofType: .string),
       .field(user.userEmail, is: .optional, ofType: .string),
       .field(user.username, is: .optional, ofType: .string),
-      .field(user.followingUsers, is: .optional, ofType: .int),
-      .field(user.isContentCreator, is: .optional, ofType: .bool),
+      .field(user.followingUsers, is: .required, ofType: .int),
+      .field(user.isContentCreator, is: .required, ofType: .bool),
       .field(user.followingUsersAts, is: .optional, ofType: .embeddedCollection(of: String.self)),
-      .field(user.followedUsers, is: .optional, ofType: .int),
+      .field(user.followedUsers, is: .required, ofType: .int),
       .field(user.followedUsersAts, is: .optional, ofType: .embeddedCollection(of: String.self)),
       .field(user.bioDescription, is: .optional, ofType: .string),
+      .field(user.profileImageKey, is: .optional, ofType: .string),
+      .field(user.bannerImageKey, is: .optional, ofType: .string),
+      .hasMany(user.claimedNFTs, is: .optional, ofType: Post.self, associatedWith: Post.keys.whoClaimed),
       .hasMany(user.posts, is: .optional, ofType: Post.self, associatedWith: Post.keys.postOwner),
       .field(user.createdAt, is: .optional, isReadOnly: true, ofType: .dateTime),
       .field(user.updatedAt, is: .optional, isReadOnly: true, ofType: .dateTime)

@@ -10,6 +10,8 @@ import Amplify
 import AWSAPIPlugin
 import AWSDataStorePlugin
 import AWSCognitoAuthPlugin
+import AWSS3StoragePlugin
+import PhotosUI
 
 enum AuthState {
     case signUpSignIn
@@ -19,7 +21,7 @@ enum AuthState {
 
 final class ModelMain: ObservableObject {
     @Published var authState: AuthState = .signUpSignIn
-    var currentUser : User?
+    @Published var currentUser : User?
     
     private init() {
         configureAmplify()
@@ -37,6 +39,7 @@ final class ModelMain: ObservableObject {
         do {
             try Amplify.add(plugin: dataStorePlugin)
             try Amplify.add(plugin: AWSCognitoAuthPlugin())
+            try Amplify.add(plugin: AWSS3StoragePlugin())
             try Amplify.add(plugin: AWSAPIPlugin(modelRegistration: AmplifyModels()))
             try Amplify.configure()
             
@@ -63,13 +66,17 @@ final class ModelMain: ObservableObject {
             let userAuth = try await Amplify.Auth.getCurrentUser()
             let userO = await self.getUser(userID: userAuth.userId)
             if let user = userO{
-                self.authState = .session(user: user)
-                self.currentUser = user
+                DispatchQueue.main.async{
+                    self.authState = .session(user: user)
+                    self.currentUser = user
+                }
                 
             }
             return userAuth
         }catch{
-            self.authState = .signUpSignIn
+            DispatchQueue.main.async{
+                self.authState = .signUpSignIn
+            }
         }
         return nil
     }
@@ -93,7 +100,9 @@ final class ModelMain: ObservableObject {
                 }
                 
                 if let currentUser = self.currentUser{
-                    self.authState = .confirmSignUp(currentUser: currentUser)
+                    DispatchQueue.main.async{
+                        self.authState = .confirmSignUp(currentUser: currentUser)
+                    }
                 }
                 
             } else {
@@ -113,7 +122,9 @@ final class ModelMain: ObservableObject {
                 print("Confirm sign up result completed: \(confirmResult.isSignUpComplete)")
                 
             }
-            self.authState = .signUpSignIn
+            DispatchQueue.main.async{
+                self.authState = .signUpSignIn
+            }
             
             await self.createUser(currentUser: currentUser)
             
@@ -139,14 +150,18 @@ final class ModelMain: ObservableObject {
                     let userID = user.userId
                     self.currentUser = await self.getUser(userID: userID)
                     if let user = self.currentUser{
-                        self.authState = .session(user: user)
-                        print(self.currentUser?.username ?? "")
+                        DispatchQueue.main.async{
+                            self.authState = .session(user: user)
+                            print(self.currentUser?.username ?? "")
+                        }
                     }
                     
                     
                 } else {
                     // Handle the case where 'getCurrentAuthUser()' returns nil (no authenticated user).
-                    self.authState = .signUpSignIn
+                    DispatchQueue.main.async{
+                        self.authState = .signUpSignIn
+                    }
                 }
             }
         } catch let error as AuthError {
@@ -239,7 +254,9 @@ final class ModelMain: ObservableObject {
         case .complete:
             // Sign Out completed fully and without errors.
             print("Signed out successfully")
-            self.authState = .signUpSignIn
+            DispatchQueue.main.async{
+                self.authState = .signUpSignIn
+            }
             
             
             
@@ -284,7 +301,7 @@ final class ModelMain: ObservableObject {
     }
     
     
-    func createPost(postContent: String, graphicalResource: String, whoClaimed: String, geoGraphicaPostPos: GeoGraphicalData, timePosted: Date, timeToPublish: Date) async {
+    func createPost(postContent: String, graphicalResourceKey: String, whoClaimed: String, geoGraphicaPostPos: GeoGraphicalData, timePosted: Date, timeToPublish: Date) async {
         
         var postStatus : PostStatus = .past
         
@@ -298,8 +315,8 @@ final class ModelMain: ObservableObject {
                 postOwner: postOwner,
                 postContent: postContent,
                 postStatus: postStatus,
-                graphicalResource: graphicalResource,
-                whoClaimed: "",
+                graphicalResourceKey: graphicalResourceKey,
+                whoClaimed: nil,
                 geoGraphicalPostPosition: geoGraphicaPostPos,
                 timePosted: Temporal.DateTime(timePosted),
                 timeToPublish: Temporal.DateTime(timeToPublish))
@@ -339,8 +356,179 @@ final class ModelMain: ObservableObject {
             return nil
         }
     }
-
     
+    func uploadToBucket(key: String, data: Data)async -> String?{
+        do {
+            //let dataString = "MyData"
+            //let data = Data(dataString.utf8)
+            let uploadTask = Amplify.Storage.uploadData(
+                key: key,
+                data: data
+            )
+            
+            Task {
+                for await progress in await uploadTask.progress {
+                    print("Progress: \(progress)")
+                }
+            }
+            
+            let value = try await uploadTask.value
+            print("Completed: \(value)")
+            return value
+        } catch let error as StorageError {
+            print("Failed: \(error.errorDescription). \(error.recoverySuggestion)")
+        } catch {
+            print("Unexpected error: \(error)")
+        }
+        return nil
+    }
+    
+    func updateUser(updatedModel: User) async {
+        do {
+            let result = try await Amplify.API.mutate(request: .update(updatedModel))
+            switch result {
+            case .success(let model):
+                print("Successfully updated User: \(model)")
+            case .failure(let error):
+                print("Got failed result with \(error.errorDescription)")
+            }
+        } catch let error as APIError {
+            print("Failed to update User - \(error)")
+        } catch {
+            print("Unexpected error: \(error)")
+        }
+    }
+    
+    func deleteFromBucket(key: String) async {
+        
+        do {
+            let removedKey = try await Amplify.Storage.remove(key: key)
+            print("Deleted \(removedKey)")
+        } catch let error as StorageError {
+            print("Failed: \(error.errorDescription). \(error.recoverySuggestion)")
+        } catch {
+            print("Unexpected error: \(error)")
+        }
+    }
+    
+    func getFromBucket(key: String) async-> Data?{
+        do {
+            let downloadTask = Amplify.Storage.downloadData(
+                key: key
+            )
+            
+            Task {
+                for await progress in await downloadTask.progress {
+                    print("Progress: \(progress)")
+                }
+            }
+            
+            let value = try await downloadTask.value
+            print("Completed: \(value)")
+            return value
+            
+        } catch let error as StorageError {
+            print("Failed: \(error.errorDescription). \(error.recoverySuggestion)")
+        } catch {
+            print("Unexpected error: \(error)")
+        }
+        return nil
+        
+    }
+    func listBucketKeys() async{
+        let options = StorageListRequest.Options(pageSize: 1000)
+        
+        do {
+            let listResult = try await Amplify.Storage.list(options: options)
+            
+            listResult.items.forEach { item in
+                print("Key: \(item.key)")
+            }
+        } catch {
+            print("Error listing items from storage: \(error)")
+        }
+    }
+    func getBannerImage() -> UIImage?{
+        if let banerKey = self.currentUser?.bannerImageKey{
+            Task{
+                let banerData = await self.getFromBucket(key: banerKey)
+                if let bData = banerData{
+                    let image = UIImage(data: bData)
+                    return image
+                }
+                return nil
+            }
+        }
+        return nil
+    }
+    
+    func getProfileImage() -> UIImage?{
+        if let profileKey = self.currentUser?.profileImageKey{
+            Task{
+                let profileData = await self.getFromBucket(key: profileKey)
+                if let pData = profileData{
+                    let image = UIImage(data: pData)
+                    return image
+                }
+                return nil
+            }
+        }
+        return nil
+    }
+    
+    func updateCurrentUser(){
+        let wCurrentID = self.currentUser?.id
+        
+        if let currentID = wCurrentID{
+            Task{
+                let updatedUser = await self.getUser(userID: currentID)
+                DispatchQueue.main.async{
+                    self.currentUser = updatedUser
+                }
+            }
+        }
+    }
+    
+    func updatePost(post: Post) async {
+        do {
+            let result = try await Amplify.API.mutate(request: .update(post))
+            switch result {
+            case .success(let model):
+                print("Successfully updated Post: \(model)")
+            case .failure(let error):
+                print("Got failed result with \(error.errorDescription)")
+            }
+        } catch let error as APIError {
+            print("Failed to update User - \(error)")
+        } catch {
+            print("Unexpected error: \(error)")
+        }
+    }
+    
+    func getPost(post: Post) async -> Post?{
+        do {
+            let result = try await Amplify.API.query(
+                request: .get(Post.self,
+                byId: post.id)
+            )
+            switch result {
+            case .success(let model):
+                guard let model = model else {
+                    print("Could not find model")
+                    return nil
+                }
+                print("Successfully retrieved model: \(model)")
+                return model
+            case .failure(let error):
+                print("Got failed result with \(error)")
+            }
+        } catch let error as APIError {
+            print("Failed to query Post - \(error)")
+        } catch {
+            print("Unexpected error: \(error)")
+        }
+        return nil
+    }
 }
 
 struct UserResponseID: Codable {

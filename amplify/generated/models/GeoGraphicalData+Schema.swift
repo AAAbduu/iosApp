@@ -19,8 +19,8 @@ extension GeoGraphicalData {
     model.syncPluralName = "GeoGraphicalData"
     
     model.fields(
-      .field(geoGraphicalData.logitudeDDegrees, is: .optional, ofType: .double),
-      .field(geoGraphicalData.latitudeDDegrees, is: .optional, ofType: .double)
+      .field(geoGraphicalData.logitudeDDegrees, is: .required, ofType: .double),
+      .field(geoGraphicalData.latitudeDDegrees, is: .required, ofType: .double)
     )
     }
 }
