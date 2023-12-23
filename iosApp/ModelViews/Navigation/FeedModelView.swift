@@ -41,7 +41,7 @@ class FeedModelView : ObservableObject{
                 }
             }
             finalFeed.shuffle()
-            let fFeed = finalFeed
+            let fFeed = finalFeed.filter{$0.whoClaimed == nil}
             DispatchQueue.main.async{
                 self.currentFeed = fFeed
             }

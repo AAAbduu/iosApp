@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SelfUserProfileView: View {
     let user: User
+    @StateObject private var vM = SelfUserProfileModelView()
     var body: some View {
         VStack(alignment: .leading, spacing: 24){
             VStack(alignment: .leading){
@@ -34,20 +35,35 @@ struct SelfUserProfileView: View {
             
             ForEach(SideUserMenuItems.allCases, id: \.rawValue){ option in
                 HStack(spacing: 16){
-                    NavigationLink{
-                        if option == .profile{
-                            DetailedProfileView(user: user)
-                        }else if option == .myNfts{
-                            DetailedProfileView(user: user)
+                    if option != .logout{
+                        NavigationLink{
+                            if option == .profile{
+                                DetailedProfileView(user: user)
+                            }else if option == .myNfts{
+                                MyNFTsView()
+                            }
+                        }label:{
+                            Image(systemName: option.image)
+                                .font(.headline)
+                                .foregroundStyle(.gray )
+                            Text(option.description)
+                                .fontWeight(.medium)
+                                .foregroundStyle(.black)
+                            Spacer()
                         }
-                    }label:{
-                        Image(systemName: option.image)
-                            .font(.headline)
-                            .foregroundStyle(.gray )
-                        Text(option.description)
-                            .fontWeight(.medium)
-                            .foregroundStyle(.black)
-                        Spacer()
+                    }else{
+                        Button {
+                            vM.logout()
+                        } label: {
+                            Image(systemName: option.image)
+                                .font(.headline)
+                                .foregroundStyle(.gray )
+                            Text(option.description)
+                                .fontWeight(.medium)
+                                .foregroundStyle(.black)
+                            Spacer()
+                        }
+
                     }
                     
                 }

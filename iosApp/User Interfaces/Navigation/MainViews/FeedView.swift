@@ -14,23 +14,25 @@ struct FeedView: View {
     var body: some View {
         ZStack{
             
-            ScrollView{
-                if vM.currentFeed.count > 0{
+            
+            if vM.currentFeed.count > 0{
+                ScrollView{
                     LazyVStack{
                         ForEach(vM.currentFeed, id: \.id) { post in
                             FeedComponentView(post: post)
                         }
                     }
-                }else{
-                    VStack{
-                        Spacer()
-                        Text("Try following content creators or refresh your view by dragging the view down!")
-                            .padding()
-                            .font(.largeTitle)
-                        Spacer()
-                    }
+                }
+            }else{
+                VStack{
+                    Spacer()
+                    Text("Try following content creators!")
+                        .padding()
+                        .font(.largeTitle)
+                    Spacer()
                 }
             }
+            
             if vM.currentUser?.isContentCreator ?? true{
                 VStack{
                     Spacer()

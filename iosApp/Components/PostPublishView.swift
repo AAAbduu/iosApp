@@ -136,6 +136,9 @@ struct PostPublishView: View {
                 InputField(text: $ethPrice, image: "envelope", placeHolder: "ETH", isSecureField: false)
                     .padding(.bottom)
                     .frame(width: 200)
+                    .disabled(true)
+                Text("This feature will arrive soon, meanwhile all nfts will be posted for free!")
+                    .font(.caption)
                 
                 Spacer()
                 

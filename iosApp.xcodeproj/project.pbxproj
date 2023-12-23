@@ -42,6 +42,8 @@
 		265B8BA82AEFE2F20017DD36 /* ProfileFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265B8BA72AEFE2F20017DD36 /* ProfileFilters.swift */; };
 		265C4DB32AED6A0300A7B018 /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265C4DB22AED6A0300A7B018 /* InputField.swift */; };
 		265C4DB72AED751400A7B018 /* ProfilePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265C4DB62AED751400A7B018 /* ProfilePreview.swift */; };
+		2663099A2B373E030026EA86 /* SelfUserProfileModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266309992B373E030026EA86 /* SelfUserProfileModelView.swift */; };
+		2663099D2B3742440026EA86 /* WalletModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2663099C2B3742440026EA86 /* WalletModelView.swift */; };
 		266360D62B2B18D7007D8D17 /* SelfUserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266360D52B2B18D7007D8D17 /* SelfUserProfileView.swift */; };
 		2669AB972B32F2110099290A /* ContentModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2669AB962B32F2110099290A /* ContentModelView.swift */; };
 		2669AB992B33134B0099290A /* FeedModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2669AB982B33134B0099290A /* FeedModelView.swift */; };
@@ -54,6 +56,8 @@
 		269FA14E2AE6B6E300B3D20E /* WalletDescr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FA14D2AE6B6E300B3D20E /* WalletDescr.swift */; };
 		26B965C92AE809D800712EB3 /* WalletInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B965C82AE809D700712EB3 /* WalletInfoView.swift */; };
 		26BC4A4A2AEAC44E0029A623 /* DetailedNftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC4A492AEAC44E0029A623 /* DetailedNftView.swift */; };
+		26C4C72B2B35A3D400CCFE53 /* MyNFTsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C4C72A2B35A3D400CCFE53 /* MyNFTsView.swift */; };
+		26C4C72D2B3602EF00CCFE53 /* MyNFTsModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C4C72C2B3602EE00CCFE53 /* MyNFTsModelView.swift */; };
 		26CA1BCE2AEEDC1C00E4EAC9 /* DetailedProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CA1BCD2AEEDC1C00E4EAC9 /* DetailedProfileView.swift */; };
 		26DF2A602AFAB2C900C49CD6 /* ConfirmCodeSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF2A5F2AFAB2C900C49CD6 /* ConfirmCodeSignUpView.swift */; };
 		26DF2A622AFC03A200C49CD6 /* ConfirmSignUpModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF2A612AFC03A200C49CD6 /* ConfirmSignUpModelView.swift */; };
@@ -118,6 +122,8 @@
 		265B8BA72AEFE2F20017DD36 /* ProfileFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilters.swift; sourceTree = "<group>"; };
 		265C4DB22AED6A0300A7B018 /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
 		265C4DB62AED751400A7B018 /* ProfilePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePreview.swift; sourceTree = "<group>"; };
+		266309992B373E030026EA86 /* SelfUserProfileModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfUserProfileModelView.swift; sourceTree = "<group>"; };
+		2663099C2B3742440026EA86 /* WalletModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletModelView.swift; sourceTree = "<group>"; };
 		266360D52B2B18D7007D8D17 /* SelfUserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfUserProfileView.swift; sourceTree = "<group>"; };
 		2669AB962B32F2110099290A /* ContentModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModelView.swift; sourceTree = "<group>"; };
 		2669AB982B33134B0099290A /* FeedModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModelView.swift; sourceTree = "<group>"; };
@@ -130,6 +136,8 @@
 		269FA14D2AE6B6E300B3D20E /* WalletDescr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDescr.swift; sourceTree = "<group>"; };
 		26B965C82AE809D700712EB3 /* WalletInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletInfoView.swift; sourceTree = "<group>"; };
 		26BC4A492AEAC44E0029A623 /* DetailedNftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedNftView.swift; sourceTree = "<group>"; };
+		26C4C72A2B35A3D400CCFE53 /* MyNFTsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNFTsView.swift; sourceTree = "<group>"; };
+		26C4C72C2B3602EE00CCFE53 /* MyNFTsModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNFTsModelView.swift; sourceTree = "<group>"; };
 		26CA1BCD2AEEDC1C00E4EAC9 /* DetailedProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedProfileView.swift; sourceTree = "<group>"; };
 		26DF2A5F2AFAB2C900C49CD6 /* ConfirmCodeSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmCodeSignUpView.swift; sourceTree = "<group>"; };
 		26DF2A612AFC03A200C49CD6 /* ConfirmSignUpModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmSignUpModelView.swift; sourceTree = "<group>"; };
@@ -323,10 +331,19 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		2663099B2B3742340026EA86 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				2663099C2B3742440026EA86 /* WalletModelView.swift */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
 		266360D42B2B18B1007D8D17 /* SelfUserProfile */ = {
 			isa = PBXGroup;
 			children = (
 				266360D52B2B18D7007D8D17 /* SelfUserProfileView.swift */,
+				26C4C72A2B35A3D400CCFE53 /* MyNFTsView.swift */,
 			);
 			path = SelfUserProfile;
 			sourceTree = "<group>";
@@ -344,11 +361,13 @@
 		2674F8212AF819AC00379308 /* ModelViews */ = {
 			isa = PBXGroup;
 			children = (
+				2663099B2B3742340026EA86 /* Wallet */,
 				2669AB952B32F1F80099290A /* Navigation */,
 				26EE64662B10D2CE00B2A60F /* DetailedProfile */,
 				2674F8222AF81AC800379308 /* RegisterLogin */,
 				260FB6B82B0F58280020651A /* PostPublishModelView.swift */,
 				2647E5972B348C7700D8E6BC /* DetailedNFTModelView.swift */,
+				266309992B373E030026EA86 /* SelfUserProfileModelView.swift */,
 			);
 			path = ModelViews;
 			sourceTree = "<group>";
@@ -411,6 +430,7 @@
 				268C89F92AFC4D6600581819 /* ProfileConfModelView.swift */,
 				26EE64672B10D2F800B2A60F /* DetailedProfileModelView.swift */,
 				263EF6962B2F76B100214E6A /* EditProfileFieldsModelView.swift */,
+				26C4C72C2B3602EE00CCFE53 /* MyNFTsModelView.swift */,
 			);
 			path = DetailedProfile;
 			sourceTree = "<group>";
@@ -580,13 +600,16 @@
 				2648B6832ADFC42900CCE4AE /* FeedView.swift in Sources */,
 				263EF6972B2F76B100214E6A /* EditProfileFieldsModelView.swift in Sources */,
 				26EE64682B10D2F800B2A60F /* DetailedProfileModelView.swift in Sources */,
+				2663099A2B373E030026EA86 /* SelfUserProfileModelView.swift in Sources */,
 				26DF2A602AFAB2C900C49CD6 /* ConfirmCodeSignUpView.swift in Sources */,
 				266360D62B2B18D7007D8D17 /* SelfUserProfileView.swift in Sources */,
 				26CA1BCE2AEEDC1C00E4EAC9 /* DetailedProfileView.swift in Sources */,
 				2647E5982B348C7700D8E6BC /* DetailedNFTModelView.swift in Sources */,
 				265C4DB72AED751400A7B018 /* ProfilePreview.swift in Sources */,
 				2674F8242AF81AEC00379308 /* RegisterLoginModelView.swift in Sources */,
+				2663099D2B3742440026EA86 /* WalletModelView.swift in Sources */,
 				2648B6812ADFBCAB00CCE4AE /* FeedComponentView.swift in Sources */,
+				26C4C72D2B3602EF00CCFE53 /* MyNFTsModelView.swift in Sources */,
 				260E226B2ADD538800526F9F /* RegisterLoginView.swift in Sources */,
 				268C89FA2AFC4D6600581819 /* ProfileConfModelView.swift in Sources */,
 				269FA1432AE6897F00B3D20E /* NavigationBarView.swift in Sources */,
@@ -608,6 +631,7 @@
 				26048E912B03A4E90095F6E1 /* CustomTextEditorView.swift in Sources */,
 				260FB6B92B0F58290020651A /* PostPublishModelView.swift in Sources */,
 				F51D72A3D6E67E8A90010A5B /* AmplifyModels.swift in Sources */,
+				26C4C72B2B35A3D400CCFE53 /* MyNFTsView.swift in Sources */,
 				6D883EE66C1CEEA55830C2FD /* GeoGraphicalData+Schema.swift in Sources */,
 				75B5E45F66B4852C73E663C2 /* GeoGraphicalData.swift in Sources */,
 				8B5C48125C00613E51884770 /* Post+Schema.swift in Sources */,

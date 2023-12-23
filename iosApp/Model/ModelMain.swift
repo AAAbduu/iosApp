@@ -529,6 +529,22 @@ final class ModelMain: ObservableObject {
         }
         return nil
     }
+    
+    func ethPriceConversionAPI() async -> Double{
+        let url = URL(string: "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD&api_key=\(ProcessInfo.processInfo.environment["CRYPTO_EXCHANGE_API_KEY"])")
+        if let unwUrl = url{
+            do{
+                let (data, _) = try await URLSession.shared.data(from: unwUrl)
+                let decoded = try JSONDecoder().decode(EthResponse.self, from: data)
+                print(decoded)
+                return decoded.USD
+            }catch{
+                print("Error")
+            }
+        }
+        return 0.0
+    }
+    
 }
 
 struct UserResponseID: Codable {
@@ -541,4 +557,8 @@ struct UserResponseID: Codable {
             let id: String?
         }
     }
+}
+
+struct EthResponse: Decodable{
+    let USD: Double
 }

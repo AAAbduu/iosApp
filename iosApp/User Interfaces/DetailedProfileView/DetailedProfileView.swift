@@ -20,26 +20,38 @@ struct DetailedProfileView: View {
        }
     
     var body: some View {
-        ScrollView{
+        
             
             profilePics
-                        
+            
             statsFollow
             
-            postSelectedFilter
-            
-            
-            
-            LazyVStack{
-                ForEach(vM.posts.indices, id: \.self) { index in
-                    if vM.posts[index].postStatus?.rawValue == profileFilter.postStatus{
-                        FeedComponentView(post: vM.posts[index])
+            if user.isContentCreator{
+                
+                postSelectedFilter
+                ScrollView{
+                    LazyVStack{
+                        ForEach(vM.posts.indices, id: \.self) { index in
+                            if vM.posts[index].postStatus?.rawValue == profileFilter.postStatus{
+                                FeedComponentView(post: vM.posts[index])
+                            }
+                        }
                     }
-                }
+                }.navigationBarTitleDisplayMode(.inline) // Set the navigation bar title to inlin
+            }else{
+                Spacer()
+                Text("Are you a content creator?")
+                    .font(.title)
+                    .padding(.top)
+                Text("Please contact us so we can verify you and you can start connecting the real world with WEB3")
+                    .font(.callout)
+                    .padding(.horizontal)
+                Spacer()
             }
+            
         }
-        .navigationBarTitleDisplayMode(.inline) // Set the navigation bar title to inline
-    }
+            
+        
 }
 
 

@@ -61,6 +61,7 @@ class DetailedNFTModelView : ObservableObject{
         var post = self.post
         
         post.whoClaimed = self.model.currentUser
+        post.postStatus = .past //Onnce claimed, already in the past...
         
         self.post = post
         
