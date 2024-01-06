@@ -14,3 +14,10 @@ A backend service was added using AWS Amplify libraries.
 Content creator credentials:
 username: prueba
 password: Prueba123#
+
+
+
+An API key is needed for the ehtereum to dollar transformation. It can be obtained from the following website: https://min-api.cryptocompare.com.
+Once the api key is obtained, navigate through the ModelMain class, you will find a method called "ethPriceConversionAPI", the line that should be changed
+is the following: let url = URL(string: "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD&api_key=\(ProcessInfo.processInfo.environment["CRYPTO_EXCHANGE_API_KEY"])")
+you can either add a environment variable or add the key as a string manually deleting the "\(ProcessInfo.processInfo.environment["CRYPTO_EXCHANGE_API_KEY"])" part of code.
