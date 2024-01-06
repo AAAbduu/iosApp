@@ -5,6 +5,13 @@
 //  Created by Abdurrahim Ali on 23/10/23.
 //
 
+/**
+ An enumeration representing different wallet types.
+
+ This enumeration includes cases for different wallet types such as Metamask and Coinbase.
+
+ */
+
 import Foundation
 
 enum WalletDescr: Int, CaseIterable{

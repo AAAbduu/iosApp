@@ -5,12 +5,18 @@
 //  Created by Abdurrahim Ali on 17/12/23.
 //
 
+/**
+ A view for editing user profile fields.
+
+ This view allows the user to edit their profile information, including username, bio, and profile images.
+ */
+
 import SwiftUI
 import PhotosUI
 
 struct EditProfileFieldsView: View {
-    @State private var username = "abdu"
-    @State private var bio = "abdu"
+    @State private var username = ""
+    @State private var bio = ""
     
     @State private var profilePicker: PhotosPickerItem?
     @State private var bannerPicker: PhotosPickerItem?
@@ -25,21 +31,39 @@ struct EditProfileFieldsView: View {
         VStack{
             ZStack{
                 PhotosPicker(selection: $bannerPicker) {
-
-                    Image(uiImage: (self.vM.currentBannerImage ?? UIImage(resource: .wallet100)))
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .foregroundColor(Color.black)
-                        .frame( height: 175)
-                        .clipShape(.rect)
+                    if self.vM.model.currentBannerImage == nil || bannerImage != nil{
+                        Image(uiImage: (bannerImage ?? UIImage(resource: .black)))
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .foregroundColor(Color.black)
+                            .frame( height: 175)
+                            .clipShape(.rect)
+                    }else{
+                        Image(uiImage: (self.vM.model.currentBannerImage ?? UIImage(resource: .black)))
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .foregroundColor(Color.black)
+                            .frame( height: 175)
+                            .clipShape(.rect)
+                    }
                 }
                 PhotosPicker(selection: $profilePicker) {
-                    Image(uiImage: profileImage ?? UIImage(resource: .wallet100))
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 80, height: 80)
-                        .clipShape(.circle)
-                        .padding(.top, 170.0)
+                    if self.vM.model.currentProfileImage == nil || profileImage != nil{
+                        Image(uiImage: profileImage ?? UIImage(resource: .blue))
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 80, height: 80)
+                            .clipShape(.circle)
+                            .padding(.top, 170.0)
+                    }else{
+                        Image(uiImage: self.vM.model.currentProfileImage ?? UIImage(resource: .blue))
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 80, height: 80)
+                            .clipShape(.circle)
+                            .padding(.top, 170.0)
+                    }
+                    
                         
                 }
                               }

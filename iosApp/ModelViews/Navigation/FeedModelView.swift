@@ -5,6 +5,16 @@
 //  Created by Abdurrahim Ali on 20/12/23.
 //
 
+/**
+ A view model class for managing the feed and post-related data for the current user.
+
+ This class is responsible for handling data related to the user's feed, including retrieving and organizing posts from followed users.
+
+ - Important:
+    - This class is an `ObservableObject`, making it suitable for use in SwiftUI views.
+    - The `currentUser` and `currentFeed` properties are marked as `@Published` to automatically notify subscribers of changes.
+ */
+
 import Foundation
 
 class FeedModelView : ObservableObject{

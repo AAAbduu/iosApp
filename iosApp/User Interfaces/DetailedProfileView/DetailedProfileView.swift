@@ -5,6 +5,13 @@
 //  Created by Abdurrahim Ali on 29/10/23.
 //
 
+/**
+ A detailed view of a user's profile.
+
+ This view displays the user's banner image, profile picture, follower statistics, name, and a follow/unfollow button. If the user is a content creator, it also shows a filter for the user's posts.
+
+ */
+
 import SwiftUI
 
 struct DetailedProfileView: View {
@@ -12,11 +19,14 @@ struct DetailedProfileView: View {
     @Namespace var slideSelectedFilter
     let user: User
     @StateObject var vM: DetailedProfileModelView
+    @StateObject private var uIM: UserImagesManager
 
        // Initialize with the visited user
        init(user: User) {
            self.user = user
            self._vM = StateObject(wrappedValue: DetailedProfileModelView(visitedUser: user))
+           self._uIM = StateObject(wrappedValue: UserImagesManager(user: user))
+
        }
     
     var body: some View {
@@ -63,12 +73,18 @@ extension DetailedProfileView{
     var profilePics: some View{
         //Banner and profile pic go here
         ZStack{
-            Rectangle()
-                .frame(height: 175)
-            Circle()
+            Image(uiImage: (self.uIM.currentBannerImage ?? UIImage(resource: .black)))
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .foregroundColor(Color.black)
+                .frame( height: 175)
+                .clipShape(.rect)
+            Image(uiImage: self.uIM.currentProfileImage ?? UIImage(resource: .blue))
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 80, height: 80)
+                .clipShape(.circle)
                 .padding(.top, 170.0)
-                .frame(width: 80)
-                .foregroundStyle(Color.blue)
         }
     }
     

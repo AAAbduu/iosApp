@@ -5,6 +5,16 @@
 //  Created by Abdurrahim Ali on 18/10/23.
 //
 
+/**
+ A SwiftUI view that represents a component of the feed displaying details of a post.
+
+ This view includes information such as the content creator's image and username, the post content, and a graphical resource along with a button to view the detailed post.
+
+ - Parameter post: The post object containing details to be displayed.
+ - Parameter dateFormatter: A `DateFormatter` for formatting the post's timePosted property.
+
+ */
+
 import SwiftUI
 
 struct FeedComponentView: View {

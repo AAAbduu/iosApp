@@ -5,6 +5,15 @@
 //  Created by Abdurrahim Ali on 23/11/23.
 //
 
+/**
+ A view model class for publishing posts within the app.
+
+ This class is responsible for handling the process of publishing new posts, including creating and uploading post content.
+
+ - Important:
+    - This class is an `ObservableObject`, making it suitable for use in SwiftUI views.
+*/
+
 import Foundation
 import MapKit
 

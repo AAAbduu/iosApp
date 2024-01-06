@@ -5,6 +5,10 @@
 //  Created by Abdurrahim Ali on 18/10/23.
 //
 
+
+/**
+ A view that shows the feed of a user
+ */
 import SwiftUI
 
 struct FeedView: View {

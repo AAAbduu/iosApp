@@ -5,6 +5,12 @@
 //  Created by Abdurrahim Ali on 14/11/23.
 //
 
+/**
+ A custom text editor view with a placeholder.
+
+ This view is designed to provide a text editor with a placeholder, similar to a `TextField`.
+ */
+
 import SwiftUI
 
 struct CustomTextEditorView: View {

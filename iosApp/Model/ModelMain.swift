@@ -3,7 +3,7 @@
 //  iosApp
 //
 //  Created by Abdurrahim Ali on 6/11/23.
-//
+//  This class holds all operations needed with the backend, it is a Singleton class so only 1 instance is created and shared though all the app.
 
 import Foundation
 import Amplify
@@ -22,16 +22,31 @@ enum AuthState {
 final class ModelMain: ObservableObject {
     @Published var authState: AuthState = .signUpSignIn
     @Published var currentUser : User?
+    @Published var currentBannerImage: UIImage? = nil
+    @Published var currentProfileImage: UIImage? = nil
+        
+    /**
+        A function that initializes the singleton class.
+     */
     
     private init() {
         configureAmplify()
         Task.detached{
             await self.getCurrentAuthUser()
+            DispatchQueue.main.async{
+                self.getBannerImage()
+                self.getProfileImage()
+            }
         }
+        
     }
     
     // Singleton instance
     static let shared = ModelMain()
+    
+    /**
+     Initial configuration required by Amplify.
+     */
     
     private func configureAmplify() {
         let dataStorePlugin = AWSDataStorePlugin(modelRegistration: AmplifyModels())
@@ -49,6 +64,10 @@ final class ModelMain: ObservableObject {
         }
     }
     
+    
+    /**
+     Function to retrieve the current Auth session.
+     */
     func fetchCurrentAuthSession() async {
         do {
             let session = try await Amplify.Auth.fetchAuthSession()
@@ -60,7 +79,9 @@ final class ModelMain: ObservableObject {
             print("Unexpected error: \(error)")
         }
     }
-    
+    /**
+     Function to retrieve the current authenticated user
+     */
     func getCurrentAuthUser() async -> AuthUser?{
         do{
             let userAuth = try await Amplify.Auth.getCurrentUser()
@@ -81,9 +102,33 @@ final class ModelMain: ObservableObject {
         return nil
     }
     
+    /**
+     A function to signup new users within the app.
+
+     - Parameters:
+        - username: The desired username for the new user.
+        - password: The password for the new user.
+        - email: The email address for the new user.
+
+     This function uses Amplify's Auth module to sign up a new user with the provided credentials.
+
+     - Important:
+        - The function is marked as `async` to handle asynchronous operations.
+        - The user's email and preferred username are added as attributes for the signup process.
+
+     - Throws:
+        - `AuthError`: If an error occurs during the signup process.
+
+     - Note:
+        - After a successful signup, the function may require additional steps such as confirming the user's identity.
+        - The function updates the `authState` property upon successful signup or logs any encountered errors.
+
+     Example Usage:
+     ```swift
+     await signup(username: "john_doe", password: "password123", email: "john.doe@example.com")
+     */
     func signup(username: String, password: String, email: String) async{
-        //check if username exists if it does, throw error
-        //check if email is already in use
+
         
         let userAttributes = [AuthUserAttribute(.email, value: email), AuthUserAttribute(.preferredUsername, value: username)]
         let options = AuthSignUpRequest.Options(userAttributes: userAttributes)
@@ -115,6 +160,26 @@ final class ModelMain: ObservableObject {
         }
     }
     
+    /**
+     Confirms the signup of a user with the provided confirmation code.
+
+     - Parameters:
+        - currentUser: The user object representing the current user.
+        - code: The confirmation code received by the user.
+
+     This function uses Amplify's Auth module to confirm the signup of a user with the given confirmation code.
+
+     - Important:
+        - The function updates the `authState` property to `.signUpSignIn` after successful confirmation.
+        - Calls the `createUser` function to handle additional user creation tasks.
+
+     - Throws:
+        - `AuthError`: If an error occurs during the confirmation process.
+
+     Example Usage:
+     ```swift
+     await confirm(currentUser: user, code: "123456")
+     */
     func confirm(currentUser: User, code: String) async{
         do{
             if let username = currentUser.username{
@@ -136,6 +201,26 @@ final class ModelMain: ObservableObject {
         }
         
     }
+    /**
+     Signs in a user with the provided username and password.
+
+     - Parameters:
+        - username: The username of the user.
+        - password: The password associated with the user.
+
+     This function uses Amplify's Auth module to sign in a user with the provided credentials.
+
+     - Important:
+        - If the sign-in is successful, updates the `authState` property to `.session(user: User)`.
+        - Retrieves the current authenticated user and updates the `currentUser` property.
+
+     - Throws:
+        - `AuthError`: If an error occurs during the sign-in process.
+
+     Example Usage:
+     ```swift
+     await signIn(username: "john_doe", password: "password123")
+     */
     
     func signIn(username: String, password: String) async {
         do {
@@ -170,7 +255,20 @@ final class ModelMain: ObservableObject {
             print("Unexpected error: \(error)")
         }
     }
-    
+    /**
+     Retrieves the user ID associated with a given username.
+
+     - Parameter:
+        - username: The username to query for.
+
+     This function uses Amplify's API module to perform a GraphQL query and retrieve the user ID based on the provided username.
+
+     - Returns:
+        - The user ID if found; otherwise, `nil`.
+
+     - Throws:
+        - `APIError`: If an error occurs during the API query.
+     */
     func getUserByUserAt(username: String) async -> String? {
         let query = """
             query GetUserByUserAtQuery {
@@ -215,7 +313,20 @@ final class ModelMain: ObservableObject {
         
         return nil
     }
-    
+    /**
+     Retrieves a user object based on the provided user ID.
+
+     - Parameter:
+        - userID: The unique identifier of the user.
+
+     This function uses Amplify's API module to perform a GraphQL query and retrieve a user object based on the provided user ID.
+
+     - Returns:
+        - The user object if found; otherwise, `nil`.
+
+     - Throws:
+        - `APIError`: If an error occurs during the API query.
+     */
     func getUser(userID: String) async -> User?{
         do {
             let result = try await Amplify.API.query(
@@ -241,6 +352,18 @@ final class ModelMain: ObservableObject {
         return nil
     }
     
+    /**
+     Signs out the user locally from the app.
+
+     This function uses Amplify's Auth module to locally sign out the user.
+
+     - Important:
+        - Resets local state variables like `currentBannerImage` and `currentProfileImage`.
+        - Updates the `authState` property to `.signUpSignIn` after a successful sign-out.
+
+     - Note:
+        - Differentiates between complete sign-out, partial sign-out with errors, and sign-out failure.
+     */
     func signOutLocally() async {
         let result = await Amplify.Auth.signOut()
         guard let signOutResult = result as? AWSCognitoSignOutResult
@@ -250,6 +373,8 @@ final class ModelMain: ObservableObject {
         }
         
         print("Local signout successful: \(signOutResult.signedOutLocally)")
+        currentBannerImage = nil
+        currentProfileImage = nil
         switch signOutResult {
         case .complete:
             // Sign Out completed fully and without errors.
@@ -283,6 +408,17 @@ final class ModelMain: ObservableObject {
         }
     }
     
+    /**
+     Creates a new user in the backend using the provided User model.
+
+     - Parameter:
+        - currentUser: The User model representing the new user.
+
+     This function uses Amplify's API module to perform a GraphQL mutation and create a new user in the backend.
+
+     - Throws:
+        - `APIError`: If an error occurs during the API mutation.
+     */
     func createUser(currentUser: User) async {
         let model = currentUser
         do {
@@ -300,7 +436,25 @@ final class ModelMain: ObservableObject {
         }
     }
     
-    
+    /**
+     Creates a new post in the backend using the provided parameters.
+
+     - Parameters:
+        - postContent: The content of the post.
+        - graphicalResourceKey: The key for the graphical resource associated with the post.
+        - whoClaimed: The claimant of the post.
+        - geoGraphicaPostPos: The geographical position of the post.
+        - timePosted: The timestamp when the post was created.
+        - timeToPublish: The timestamp when the post is scheduled to be published.
+
+     This function uses Amplify's API module to perform a GraphQL mutation and create a new post in the backend.
+
+     - Important:
+        - Determines the post status (past, upcoming, or live) based on the provided timestamps.
+
+     - Throws:
+        - `APIError`: If an error occurs during the API mutation.
+     */
     func createPost(postContent: String, graphicalResourceKey: String, whoClaimed: String, geoGraphicaPostPos: GeoGraphicalData, timePosted: Date, timeToPublish: Date) async {
         
         var postStatus : PostStatus = .past
@@ -338,6 +492,12 @@ final class ModelMain: ObservableObject {
         
     }
     
+    /**
+     Retrieves the posts associated with the current user.
+
+     - Returns:
+        - A List of posts if available; otherwise, an empty List.
+     */
     func getUsersPost() async -> List<Post>{
         
         if let posts = self.currentUser?.posts{
@@ -347,6 +507,15 @@ final class ModelMain: ObservableObject {
         return List()
     }
     
+    /**
+     Retrieves a user object with associated posts based on the provided user ID.
+
+     - Parameter:
+        - userID: The unique identifier of the user.
+
+     - Returns:
+        - The user object if found; otherwise, `nil`.
+     */
     func getUserWithPosts(userID: String) async -> User? {
         do {
             let user = try await Amplify.DataStore.query(User.self, byId: userID)
@@ -357,6 +526,17 @@ final class ModelMain: ObservableObject {
         }
     }
     
+    /**
+     Uploads data to the storage bucket with the specified key.
+
+     - Parameters:
+        - key: The unique identifier for the data in the storage bucket.
+        - data: The data to be uploaded.
+
+     - Returns:
+        - The key of the uploaded data if successful; otherwise, `nil`.
+
+     */
     func uploadToBucket(key: String, data: Data)async -> String?{
         do {
             //let dataString = "MyData"
@@ -383,6 +563,18 @@ final class ModelMain: ObservableObject {
         return nil
     }
     
+    /**
+     Updates the user information in the backend using the provided updated User model.
+
+     - Parameter:
+        - updatedModel: The updated User model.
+
+     This function uses Amplify's API module to perform a GraphQL mutation and update the user information in the backend.
+
+     - Throws:
+        - `APIError`: If an error occurs during the API mutation.
+
+     */
     func updateUser(updatedModel: User) async {
         do {
             let result = try await Amplify.API.mutate(request: .update(updatedModel))
@@ -399,6 +591,12 @@ final class ModelMain: ObservableObject {
         }
     }
     
+    /**
+     Deletes data from the storage bucket with the specified key.
+
+     - Parameter:
+        - key: The unique identifier for the data in the storage bucket.
+     */
     func deleteFromBucket(key: String) async {
         
         do {
@@ -411,6 +609,15 @@ final class ModelMain: ObservableObject {
         }
     }
     
+    /**
+     Retrieves data from the storage bucket with the specified key.
+
+     - Parameter:
+        - key: The unique identifier for the data in the storage bucket.
+
+     - Returns:
+        - The retrieved data if successful; otherwise, `nil`.
+     */
     func getFromBucket(key: String) async-> Data?{
         do {
             let downloadTask = Amplify.Storage.downloadData(
@@ -435,6 +642,10 @@ final class ModelMain: ObservableObject {
         return nil
         
     }
+    
+    /**
+     Lists the keys of items stored in the storage bucket.
+     */
     func listBucketKeys() async{
         let options = StorageListRequest.Options(pageSize: 1000)
         
@@ -448,34 +659,14 @@ final class ModelMain: ObservableObject {
             print("Error listing items from storage: \(error)")
         }
     }
-    func getBannerImage() -> UIImage?{
-        if let banerKey = self.currentUser?.bannerImageKey{
-            Task{
-                let banerData = await self.getFromBucket(key: banerKey)
-                if let bData = banerData{
-                    let image = UIImage(data: bData)
-                    return image
-                }
-                return nil
-            }
-        }
-        return nil
-    }
-    
-    func getProfileImage() -> UIImage?{
-        if let profileKey = self.currentUser?.profileImageKey{
-            Task{
-                let profileData = await self.getFromBucket(key: profileKey)
-                if let pData = profileData{
-                    let image = UIImage(data: pData)
-                    return image
-                }
-                return nil
-            }
-        }
-        return nil
-    }
-    
+   
+    /**
+     Updates the current user information, including profile and banner images.
+
+     - Note:
+        - Calls `getUser` to fetch the updated user information and updates local state variables.
+
+     */
     func updateCurrentUser(){
         let wCurrentID = self.currentUser?.id
         
@@ -484,11 +675,24 @@ final class ModelMain: ObservableObject {
                 let updatedUser = await self.getUser(userID: currentID)
                 DispatchQueue.main.async{
                     self.currentUser = updatedUser
+                    self.getBannerImage()
+                    self.getProfileImage()
                 }
             }
         }
     }
     
+    /**
+     Updates the post information in the backend using the provided updated Post model.
+
+     - Parameter:
+        - post: The updated Post model.
+
+     This function uses Amplify's API module to perform a GraphQL mutation and update the post information in the backend.
+
+     - Throws:
+        - `APIError`: If an error occurs during the API mutation.
+    */
     func updatePost(post: Post) async {
         do {
             let result = try await Amplify.API.mutate(request: .update(post))
@@ -504,7 +708,9 @@ final class ModelMain: ObservableObject {
             print("Unexpected error: \(error)")
         }
     }
-    
+    /**
+     Retrieves a post object based on the provided Post model.
+     */
     func getPost(post: Post) async -> Post?{
         do {
             let result = try await Amplify.API.query(
@@ -530,6 +736,84 @@ final class ModelMain: ObservableObject {
         return nil
     }
     
+    /**
+     Retrieves the banner image associated with the current user.
+
+    - Note:
+       - Calls `getFromBucket` to fetch the banner image data and updates the `currentBannerImage` property.
+     */
+    func getBannerImage(){
+        if let banerKey = self.currentUser?.bannerImageKey{
+            Task{
+                let banerData = await self.getFromBucket(key: banerKey)
+                if let bData = banerData{
+                    let image = UIImage(data: bData)
+                    DispatchQueue.main.async{
+                        self.currentBannerImage = image
+                    }
+                }
+            }
+        }
+    }
+    
+    func getProfileImage() {
+        if let profileKey = self.currentUser?.profileImageKey{
+            Task{
+                let profileData = await self.getFromBucket(key: profileKey)
+                if let pData = profileData{
+                    let image = UIImage(data: pData)
+                    DispatchQueue.main.async{
+                        self.currentProfileImage = image
+                    }
+                }
+            }
+        }
+    }
+    
+    /**
+     Retrieves the banner image associated with the provided user.
+
+     - Parameter:
+        - user: The user for whom the banner image should be retrieved.
+
+     - Returns:
+        - The retrieved banner image if successful; otherwise, `nil`.
+     */
+    func getAnyBannerImage(user: User) async -> UIImage? {
+        if let bannerKey = user.bannerImageKey {
+            let bannerData = await getFromBucket(key: bannerKey)
+            if let imageData = bannerData {
+                return UIImage(data: imageData)
+            }
+        }
+        return nil
+    }
+    
+    /**
+     Retrieves the profile image associated with the provided user.
+
+     - Parameter:
+        - user: The user for whom the profile image should be retrieved.
+
+     - Returns:
+        - The retrieved profile image if successful; otherwise, `nil`.
+     */
+    func getAnyProfileImage(user: User) async -> UIImage? {
+        if let profileKey = user.profileImageKey {
+            let profileData =  await getFromBucket(key: profileKey)
+            if let imageData = profileData {
+                return UIImage(data: imageData)
+            }
+        }
+        return nil
+    }
+    
+    /**
+     Retrieves the current Ether (ETH) to USD exchange rate using an external API.
+
+     - Returns:
+        - The ETH to USD exchange rate if successful; otherwise, `0.0`.
+     */
     func ethPriceConversionAPI() async -> Double{
         let url = URL(string: "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD&api_key=\(ProcessInfo.processInfo.environment["CRYPTO_EXCHANGE_API_KEY"])")
         if let unwUrl = url{

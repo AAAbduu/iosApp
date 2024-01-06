@@ -5,6 +5,11 @@
 //  Created by Abdurrahim Ali on 7/11/23.
 //
 
+/*
+  A view for confirming the account sign-up with a confirmation code.
+
+  This view includes UI elements for entering the confirmation code and a button to confirm the sign-up.
+ */
 import SwiftUI
 
 struct ConfirmCodeSignUpView: View {

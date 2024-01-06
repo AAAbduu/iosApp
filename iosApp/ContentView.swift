@@ -5,12 +5,18 @@
 //  Created by Abdurrahim Ali on 16/10/23.
 //
 
+/**
+ A view defining some basic aspects of the main view such as the top bar of the app and the side menus.
+ */
+
 import SwiftUI
 
 struct ContentView: View {
     let user : User
     @State private var showSideMenu = false
     @State private var showWalletMenu = false
+    @ObservedObject var modelMain: ModelMain = ModelMain.shared
+
     var body: some View {
         mainView
     }
@@ -65,7 +71,10 @@ extension ContentView{
                         showWalletMenu = false
                     }
                 } label: {
-                    Circle()
+                    Image(uiImage: self.modelMain.currentProfileImage ?? .blue)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .clipShape(Circle())
                         .frame(width: 32, height: 32)
                 }
             }

@@ -5,6 +5,16 @@
 //  Created by Abdurrahim Ali on 22/12/23.
 //
 
+/**
+ A view model class for managing the retrieval of claimed NFTs.
+
+ This class is responsible for fetching and managing the claimed NFTs associated with the current user.
+
+ - Important:
+    - This class is an `ObservableObject`, making it suitable for use in SwiftUI views.
+    - The `claimedNfts` property is marked as `@Published` to automatically notify subscribers of changes.
+ */
+
 import Foundation
 class MyNFTsModelView : ObservableObject{
     @Published var claimedNfts : [Post] = []

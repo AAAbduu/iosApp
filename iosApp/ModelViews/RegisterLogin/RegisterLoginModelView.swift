@@ -5,6 +5,17 @@
 //  Created by Abdurrahim Ali on 5/11/23.
 //
 
+/**
+ A view model class for managing user registration and login.
+
+ This class is responsible for handling user registration and login operations, providing functions to sign up and sign in users.
+
+ - Important:
+    - This class is an `ObservableObject`, making it suitable for use in SwiftUI views.
+    - The `isBusy` property is marked as `@Published` to automatically notify subscribers of changes.
+
+ */
+
 import Foundation
 
 

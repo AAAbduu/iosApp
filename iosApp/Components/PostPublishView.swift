@@ -5,6 +5,12 @@
 //  Created by Abdurrahim Ali on 14/11/23.
 //
 
+/**
+ A view for publishing a new post.
+
+ This view includes UI elements for entering post details such as description, URL, location, and date.
+ */
+
 import SwiftUI
 import MapKit
 import SceneKit
@@ -15,7 +21,7 @@ struct PostPublishView: View {
     @StateObject private var vM = PostPublishModelView()
     
     @State private var postDescription = ""
-    @State private var postURL = ""
+    @State private var postURL = "https://www.hogent.be"
     @State private var longitude = ""
     @State private var latitude = ""
     @State private var ethPrice = ""
@@ -83,20 +89,26 @@ struct PostPublishView: View {
                 .frame(height: 20)
                 .background(Color.purple)
                 
-                Text("Please provide a url containing the resource")
+                Text("This feature will be added soon!")
                 
                 InputField(text: $postURL, image: "globe", placeHolder: "", isSecureField: false)
                     .padding(.vertical)
                     .textInputAutocapitalization(.never)
+                    .disabled(true)
                 
                 Button("Reach resource") {
                     // Cargar el recurso aquí...
                 }
-                .disabled(postURL.isEmpty)
+                .disabled(true)
                 
                 // Vista de SceneKit para mostrar el modelo 3D
-                SceneView()
-                    .frame(height: 200)
+                //SceneView()
+                  //  .frame(height: 200)
+                
+                Text("Your resource will be displayed here when the feature is added!")
+                    .font(.caption)
+                    .padding()
+                    
                 
                 Text("Where would you like to have your NFT available?")
                 
@@ -154,7 +166,7 @@ struct IdentifiableCoordinate: Identifiable {
     var coordinate: CLLocationCoordinate2D
 }
 
-struct SceneView: UIViewRepresentable {
+/*struct SceneView: UIViewRepresentable {
     func makeUIView(context: Context) -> SCNView {
         let sceneView = SCNView()
         sceneView.scene = SCNScene(named: "animacionO.dae") // Cambia "tuModelo.dae" por el nombre de tu archivo
@@ -163,7 +175,7 @@ struct SceneView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: SCNView, context: Context) {}
-}
+}*/
 
 
 #Preview {

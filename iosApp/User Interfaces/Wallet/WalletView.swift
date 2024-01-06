@@ -5,6 +5,10 @@
 //  Created by Abdurrahim Ali on 23/10/23.
 //
 
+/**
+ A view displaying wallet information, including the current balance and a list of available wallets.
+*/
+
 import SwiftUI
 
 struct WalletView: View {

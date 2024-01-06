@@ -5,6 +5,10 @@
 //  Created by Abdurrahim Ali on 16/10/23.
 //
 
+/**
+ App entry point
+ */
+
 import SwiftUI
 
 
@@ -13,6 +17,8 @@ import SwiftUI
 @main
 struct iosApp: App {
     @StateObject var model = ModelMain.shared
+
+
     
     init(){
         LocationManager.shared.requestLocation()
@@ -29,6 +35,8 @@ struct iosApp: App {
                 case .session(_):
                     if let unwUser = self.model.currentUser{
                         ContentView(user: unwUser)
+
+
                     }
                 }
             }

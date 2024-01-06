@@ -5,16 +5,35 @@
 //  Created by Abdurrahim Ali on 14/12/23.
 //
 
+/**
+ A view displaying the user's profile information and navigation options.
+
+ This view is intended for the user to view and interact with their own profile. It displays the user's profile picture, username, follower/following counts, and provides navigation options for viewing their detailed profile, NFTs, and logging out.
+ */
+
 import SwiftUI
+import Combine
 
 struct SelfUserProfileView: View {
     let user: User
     @StateObject private var vM = SelfUserProfileModelView()
+    @ObservedObject var modelMain: ModelMain = ModelMain.shared
     var body: some View {
         VStack(alignment: .leading, spacing: 24){
             VStack(alignment: .leading){
-                Circle()
-                    .frame(width: 64, height: 64)
+                if let userPP = modelMain.currentProfileImage{
+                    Image(uiImage: userPP)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .clipShape(Circle())
+                        .frame(width: 64, height: 64)
+                }else{
+                    Image(uiImage: .blue)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .clipShape(Circle())
+                        .frame(width: 64, height: 64)
+                }
                 VStack(alignment: .leading, spacing: 4){
                     Text(user.username ?? "error")
                         .font(.headline)

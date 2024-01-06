@@ -5,6 +5,17 @@
 //  Created by Abdurrahim Ali on 24/11/23.
 //
 
+/**
+ A view model class for managing detailed user profile-related data and actions.
+
+ This class is responsible for handling data related to a specific user's detailed profile, including posts, following status, and actions like follow and unfollow.
+
+ - Important:
+    - This class is an `ObservableObject`, making it suitable for use in SwiftUI views.
+    - The `visitedUser`, `posts`, and `following` properties are marked as `@Published` to automatically notify subscribers of changes.
+
+ */
+
 import Foundation
 
 class DetailedProfileModelView : ObservableObject{

@@ -5,6 +5,10 @@
 //  Created by Abdurrahim Ali on 16/10/23.
 //
 
+/*
+ A view that handles the login and signup for a user
+ */
+
 import SwiftUI
 
 enum RegisterLoginViewButton {
@@ -25,7 +29,7 @@ struct RegisterLoginView: View {
     @State private var tappedButton : RegisterLoginViewButton = .none
     
     //Data capture for viewModel
-    @State private var username = "abdu"
+    @State private var username = ""
     @State private var password = ""
     @State private var passwordRepeat = ""
     @State private var email = ""
@@ -70,7 +74,7 @@ extension RegisterLoginView {
                 .offset(x: offSetLogo[0], y: offSetLogo[1])
                 .padding()
             
-            Text("App Name")
+            Text("WORLD 3.0")
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .offset(x: 0, y: appNameYOffset)

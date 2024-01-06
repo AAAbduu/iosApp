@@ -5,6 +5,10 @@
 //  Created by Abdurrahim Ali on 19/10/23.
 //
 
+/**
+ A view that defines the bottom bar navigation
+ */
+
 import SwiftUI
 
 //Create an enum for your options

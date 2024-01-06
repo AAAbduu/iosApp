@@ -4,6 +4,14 @@
 //
 //  Created by Abdurrahim Ali on 21/12/23.
 //
+/**
+ A view model class for handling detailed information and actions related to a specific NFT (Non-Fungible Token).
+
+ This class is responsible for managing the detailed view of an NFT, including updating its information, checking if it can be claimed, and handling the claiming process.
+
+ - Important:
+    - This class is an `ObservableObject`, making it suitable for use in SwiftUI views.
+ */
 
 import Foundation
 import CoreLocation

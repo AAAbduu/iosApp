@@ -4,6 +4,7 @@
 //
 //  Created by Abdurrahim Ali on 21/12/23.
 //  This code was extracted from a Youtube video from AppStuff channel0
+// This code manages wether the user gives permission of location usage.
 
 import CoreLocation
 

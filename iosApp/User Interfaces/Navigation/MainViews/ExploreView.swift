@@ -5,13 +5,17 @@
 //  Created by Abdurrahim Ali on 23/10/23.
 //
 
+/**
+ A view for the explore tab, allow user input and shows result if found in the backend data
+ */
+
 import SwiftUI
 
 struct ExploreView: View {
     @State private var searchText = ""
     private var imageExplore = "magnifyingglass"
     @StateObject private var vM = ExploreModelView()
-    /*User(id: "", userAt: "", userEmail: "", username: "", followingUsers: 0, isContentCreator: false, followingUsersAts: nil, followedUsers: 0, followedUsersAts: nil, bioDescription: "", posts: nil, createdAt: nil, updatedAt: nil)*/
+
     var body: some View {
         VStack{
             

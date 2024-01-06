@@ -5,6 +5,10 @@
 //  Created by Abdurrahim Ali on 26/10/23.
 //
 
+/**
+ A view to display all the posts content in a detailed way.
+ */
+
 import SwiftUI
 import MapKit
 

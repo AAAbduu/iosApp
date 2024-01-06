@@ -5,6 +5,12 @@
 //  Created by Abdurrahim Ali on 4/11/23.
 //
 
+/**
+ A view that represents a checkbox toggle.
+
+ This view includes a checkbox with a text label. The checkbox can be toggled on or off.
+ */
+
 import SwiftUI
 
 struct CheckBoxToggleView: View {
